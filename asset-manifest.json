@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Zilvinas-Zitkauskas/MirGOsof-projektas/static/css/main.fcbe3dd6.css",
+    "main.js": "/Zilvinas-Zitkauskas/MirGOsof-projektas/static/js/main.269b2960.js",
+    "index.html": "/Zilvinas-Zitkauskas/MirGOsof-projektas/index.html",
+    "main.fcbe3dd6.css.map": "/Zilvinas-Zitkauskas/MirGOsof-projektas/static/css/main.fcbe3dd6.css.map",
+    "main.269b2960.js.map": "/Zilvinas-Zitkauskas/MirGOsof-projektas/static/js/main.269b2960.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fcbe3dd6.css",
+    "static/js/main.269b2960.js"
+  ]
+}
