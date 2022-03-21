@@ -5,15 +5,17 @@ import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
 import Login from './components/Login';
 import ProductList from './components/ProductList';
+import Registration from './components/Registration';
 
 import Context from "./Context";
+import environment from './environment'
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 
 export default class App extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -31,20 +33,15 @@ export default class App extends Component {
   }
   login = async (email, password) => {
     const res = await axios.post(
-      'http://localhost:3001/login',
+      `${environment.serverUrl}/login`,
       { email, password },
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
-  
-    if(res.status === 200) {
-      const { email } = jwt_decode(res.data.accessToken)
-      const user = {
-        email,
-        token: res.data.accessToken,
-        accessLevel: email === 'admin@example.com' ? 0 : 1
-      }
-  
+
+    if (res.status === 200) {
+      const user = res.data;
+
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
       return true;
@@ -55,14 +52,14 @@ export default class App extends Component {
   async componentDidMount() {
     let user = localStorage.getItem("user");
     let cart = localStorage.getItem("cart");
-  
-    const products = await axios.get('http://localhost:3001/products');
+
+    const products = await axios.get(`${environment.serverUrl}/products`);
     user = user ? JSON.parse(user) : null;
-    cart = cart? JSON.parse(cart) : {};
-  
-    this.setState({ user,  products: products.data, cart });
+    cart = cart ? JSON.parse(cart) : {};
+
+    this.setState({ user, products: products.data, cart });
   }
-  
+
   logout = e => {
     e.preventDefault();
     this.setState({ user: null });
@@ -82,7 +79,7 @@ export default class App extends Component {
     localStorage.setItem("cart", JSON.stringify(cart));
     this.setState({ cart });
   };
-  
+
   render() {
     return (
       <Context.Provider
@@ -97,32 +94,31 @@ export default class App extends Component {
         }}
       >
         <Router refs={this.routerRef}>
-        <div className="App">
-          <nav
-            className="navbar container"
-            role="navigation"
-            aria-label="main navigation"
-          >
-            <div className="navbar-brand">
-              <b className="navbar-item is-size-4 ">mirGOstore</b>
-              <label
-                role="button"
-                class="navbar-burger burger"
-                aria-label="menu"
-                aria-expanded="false"
-                data-target="navbarBasicExample"
-                onClick={e => {
-                  e.preventDefault();
-                  this.setState({ showMenu: !this.state.showMenu });
-                }}
-              >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </label>
-            </div>
-              <div className={`navbar-menu ${
-                  this.state.showMenu ? "is-active" : ""
+          <div className="App">
+            <nav
+              className="navbar container"
+              role="navigation"
+              aria-label="main navigation"
+            >
+              <div className="navbar-brand">
+                <b className="navbar-item is-size-4 ">mirGOstore</b>
+                <label
+                  role="button"
+                  className="navbar-burger burger"
+                  aria-label="menu"
+                  aria-expanded="false"
+                  data-target="navbarBasicExample"
+                  onClick={e => {
+                    e.preventDefault();
+                    this.setState({ showMenu: !this.state.showMenu });
+                  }}
+                >
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </label>
+              </div>
+              <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
                 <Link to="/products" className="navbar-item">
                   Products
@@ -138,13 +134,18 @@ export default class App extends Component {
                     className="tag is-primary"
                     style={{ marginLeft: "5px" }}
                   >
-                    { Object.keys(this.state.cart).length }
+                    {Object.keys(this.state.cart).length}
                   </span>
                 </Link>
                 {!this.state.user ? (
-                  <Link to="/login" className="navbar-item">
-                    Login
-                  </Link>
+                  <>
+                    <Link to="/login" className="navbar-item">
+                      Login
+                    </Link>
+                    <Link to="/register" className="navbar-item">
+                      Register
+                    </Link>
+                  </>
                 ) : (
                   <Link to="/" onClick={this.logout} className="navbar-item">
                     Logout
@@ -153,11 +154,12 @@ export default class App extends Component {
               </div>
             </nav>
             <Routes>
-              <Route exact path="/" element={<ProductList/>} />
-              <Route exact path="/login" element={<Login/>} />
-              <Route exact path="/cart" element={<Cart/>} />
-              <Route exact path="/add-product" element={<AddProduct/>} />
-              <Route exact path="/products" element={<ProductList/>} />
+              <Route exact path="/" element={<ProductList />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/register" element={<Registration />} />
+              <Route exact path="/cart" element={<Cart />} />
+              <Route exact path="/add-product" element={<AddProduct />} />
+              <Route exact path="/products" element={<ProductList />} />
             </Routes>
           </div>
         </Router>
