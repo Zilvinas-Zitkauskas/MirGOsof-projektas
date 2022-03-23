@@ -49,6 +49,58 @@ export default class App extends Component {
       return false;
     }
   }
+
+  removeProduct = () => {
+    if (!this.state.user) {
+      this.routerRef.current.history.push("/login");
+      return;
+    }
+  
+    const products = this.state.products.map(p => {
+      if (true) {
+        axios.put(
+          `http://localhost:3001/products/${p.id}`,
+          { ...p },
+        )
+      }
+      return p;
+    });
+
+    this.setState({ products });
+  };
+
+  
+
+  checkout = () => {
+    if (!this.state.user) {
+      this.routerRef.current.history.push("/login");
+      return;
+    }
+  
+    const cart = this.state.cart;
+  
+    const products = this.state.products.map(p => {
+      if (cart[p.name]) {
+        p.stock = p.stock - cart[p.name].amount;
+  
+        axios.put(
+          `http://localhost:3001/products/${p.id}`,
+          { ...p },
+        )
+      }
+      return p;
+    });
+  
+    this.setState({ products });
+    this.clearCart();
+  };
+  logout = e => {
+    e.preventDefault();
+    this.setState({ user: null });
+    localStorage.removeItem("user");
+  };
+
+
   async componentDidMount() {
     let user = localStorage.getItem("user");
     let cart = localStorage.getItem("cart");
@@ -77,6 +129,42 @@ export default class App extends Component {
       cart[cartItem.id].amount = cart[cartItem.id].product.stock;
     }
     localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart });
+  };
+
+  handleDelete = product => {
+    if (!this.state.user) {
+      this.routerRef.current.history.push("/login");
+      return;
+    }
+  
+    const products = this.state.products.map(p => {
+      if (product[p.name]) {
+        axios
+        .delete(`http://localhost:3001/products/${product.id}`)
+        .then(response => {
+          window.confirm(`Delete ${product.name}?`);
+      
+        });
+        
+      }
+      return p;
+    });
+  
+    this.setState({ products });
+  
+  };
+  
+  removeFromCart = cartItemId => {
+    let cart = this.state.cart;
+    delete cart[cartItemId];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart });
+  };
+  
+  clearCart = () => {
+    let cart = {};
+    localStorage.removeItem("cart");
     this.setState({ cart });
   };
 
