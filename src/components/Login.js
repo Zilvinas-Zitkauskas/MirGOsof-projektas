@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Navigate } from "react-router-dom";
 import withContext from "../withContext";
 import { PropTypes } from 'react';
+import Hero from './Hero'
 
 class Login extends React.Component {
 
@@ -33,11 +34,7 @@ class Login extends React.Component {
   render() {
     return !this.props.context.user ? (
       <>
-        <div className="hero is-primary ">
-          <div className="hero-body container">
-            <h4 className="title">Login</h4>
-          </div>
-        </div>
+        <Hero title="Login" />
         <br />
         <br />
         <form onSubmit={this.login}>

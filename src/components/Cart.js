@@ -1,17 +1,14 @@
 import React from "react";
 import withContext from "../withContext";
 import CartItem from "./CartItem";
+import Hero from "./Hero"
 
 const Cart = props => {
   const { cart } = props.context;
   const cartKeys = Object.keys(cart || {});
   return (
     <>
-      <div className="hero is-primary">
-        <div className="hero-body container">
-          <h4 className="title">My Cart</h4>
-        </div>
-      </div>
+      <Hero title="My Cart" />
       <br />
       <div className="container">
         {cartKeys.length ? (
