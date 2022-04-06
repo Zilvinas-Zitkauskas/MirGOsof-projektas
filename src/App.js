@@ -41,7 +41,6 @@ export default class App extends Component {
 
     if (res.status === 200) {
       const user = res.data;
-
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
       return true;
@@ -110,7 +109,12 @@ export default class App extends Component {
     cart = cart ? JSON.parse(cart) : {};
 
     this.setState({ user, products: products.data, cart });
-  }
+  }  
+  addProduct = (product, callback) => {
+    let products = this.state.products.slice();
+    products.push(product);
+    this.setState({ products }, () => callback && callback());
+  };
 
   logout = e => {
     e.preventDefault();
@@ -211,7 +215,7 @@ export default class App extends Component {
                 <Link to="/products" className="navbar-item">
                   Products
                 </Link>
-                {this.state.user && this.state.user.accessLevel < 1 && (
+                {this.state.user && this.state.user.email == "admin@admin.com" && (
                   <Link to="/add-product" className="navbar-item">
                     Add Product
                   </Link>

@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from 'formik';
 import environment from '../environment'
 import Hero from './Hero'
+import { Navigate } from "react-router-dom";
+
 
 function Settings() {
   return (
@@ -30,7 +32,9 @@ function Settings() {
                 alert(JSON.stringify(result, null, 2));
                 setSubmitting(false);
               })
-          }}>
+              (<Navigate to="/products" />);
+          }}
+          >
             {({ isSubmitting }) => (
               <Form>
                 <div className="field">
