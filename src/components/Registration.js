@@ -1,10 +1,14 @@
 import { Formik, Form, Field } from 'formik';
 import environment from '../environment'
+import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { Navigate } from "react-router-dom";
+import { useState } from 'react';
 
 
 function Settings() {
+  let [error, setError] = useState(null);
+  let navigate = useNavigate();
   return (
     <>
       <Hero title="Sign up" />
@@ -27,9 +31,14 @@ function Settings() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values)
               })
-              .then((value) => value.json())
+              .then((value) => {
+                if (!value.ok) {
+                  return value.json()
+                }
+                navigate('/login');
+              })
               .then(result => {
-                alert(JSON.stringify(result, null, 2));
+                setError(result);
                 setSubmitting(false);
               })
               (<Navigate to="/products" />);
@@ -42,23 +51,23 @@ function Settings() {
                   <Field className="input" id="fullName" type="text" name="fullName" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="username">username</label>
+                  <label className="label" htmlFor="username">Username</label>
                   <Field className="input" id="username" type="text" name="username" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="email">e-mail</label>
+                  <label className="label" htmlFor="email">Email</label>
                   <Field className="input" id="email" type="email" name="email" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="emailConfirmation">confirm e-mail</label>
+                  <label className="label" htmlFor="emailConfirmation">Confirm Email</label>
                   <Field className="input" id="emailConfirmation" type="email" name="emailConfirmation" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="password">password</label>
+                  <label className="label" htmlFor="password">Password</label>
                   <Field className="input" id="password" type="password" name="password" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="city">city</label>
+                  <label className="label" htmlFor="city">City</label>
                   <Field className="input" id="city" as="select" name="city">
                     <option value=""></option>
                     <option value="Kaunas">Kaunas</option>
@@ -66,10 +75,13 @@ function Settings() {
                   </Field>
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="address">address</label>
+                  <label className="label" htmlFor="address">Address</label>
                   <Field className="input" id="address" type="text" name="address" />
                 </div>
                 <button className="button is-primary is-outlined is-pulled-right" type="submit" disabled={isSubmitting}>Continue</button>
+
+                {error?.error && <div className="has-text-danger">{error?.error}</div>}
+
               </Form>
             )}
           </Formik>

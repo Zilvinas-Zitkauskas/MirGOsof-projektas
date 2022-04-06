@@ -30,40 +30,56 @@ app.use(cors({
 app.post('/register', jsonParser, function (req, res) {
   const { fullName, username, email, emailConfirmation, password, city, address } = req.body;
   if (!fullName || !username || !email || !emailConfirmation || !password || !city || !address) {
-    res.status(400).send({ error: 'fullName, username, email, emailConfirmation, password, city and address are required!' });
+    res.status(400).send({ error: 'All fields are required!' });
     return;
   }
   if (email !== emailConfirmation) {
-    res.status(422).send({ error: 'email and emailConfirmation must match!' });
+    res.status(422).send({ error: 'Email and confirm email must match!' });
     return;
   }
   if (registeredUsers.has(email)) {
-    res.status(422).send({ error: 'email is already registered!' });
+    res.status(422).send({ error: 'Email is already registered!' });
     return;
   }
   registeredUsers.set(email, req.body)
   res.sendStatus(200);
 })
 
-app.post('/add-product', jsonParser, function (req, res) {
-  const { name, price, stock, shortDesc, description } = req.body;
-  const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
-  let newData = {
-          id,
-          name,
-          price,
-          shortDesc,
-          description,
-          stock: stock || 0
-  };
-  var newData2 = JSON.stringify(myObject);
-  fs.writeFile("data2.json", newData2, (err) => {
-  // Error checking
-  if (err) throw err;
-  console.log("New data added");
-});
-  myObject.push(newData);
-  res.sendStatus(200).send(json.products);
+// app.post('/add-product', jsonParser, function (req, res) {
+//   const { name, price, stock, shortDesc, description } = req.body;
+//   const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
+//   let newData = {
+//           id,
+//           name,
+//           price,
+//           shortDesc,
+//           description,
+//           stock: stock || 0
+//   };
+//   var newData2 = JSON.stringify(myObject);
+//   fs.writeFile("data2.json", newData2, (err) => {
+//   // Error checking
+//   if (err) throw err;
+//   console.log("New data added");
+// });
+//   myObject.push(newData);
+//   res.sendStatus(200).send(json.products);
+app.post('/forgotpassword', jsonParser, function (req, res) {
+  const { email } = req.body;
+  if (!registeredUsers.has(email)) {
+    res.status(422).send({ error: 'Email not registered!' })
+    return;
+  }
+  res.sendStatus(200);
+})
+
+app.post('/resetpassword', jsonParser, function (req, res) {
+  const { newPassword, confirmPassword } = req.body;
+  if (newPassword !== confirmPassword) {
+    res.status(400).send({ error: 'Password and confirm password must match!' })
+    return;
+  }
+  res.sendStatus(200);
 })
 
 app.get('/products', async function (req, res) {
@@ -77,7 +93,7 @@ app.post('/login', jsonParser, function (req, res) {
   const { email, password } = req.body;
   const user = registeredUsers.get(email);
   if (!user || user.password !== password) {
-    res.status(400).send({ error: 'invalid username or password!' })
+    res.status(400).send({ error: 'Invalid username or password!' })
     return;
   }
   res.status(200).send(user);
