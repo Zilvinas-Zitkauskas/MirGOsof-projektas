@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import withContext from "../withContext";
 import { PropTypes } from 'react';
 import Hero from './Hero'
+import { Link, NavLink } from "react-router-dom";
 
 class Login extends React.Component {
 
@@ -61,6 +62,10 @@ class Login extends React.Component {
               {this.state.error && (
                 <div className="has-text-danger">{this.state.error}</div>
               )}
+              <div className="has-text">
+             <NavLink to="/forgotpassword">
+              Forgot password?
+              </NavLink>
               <div className="field is-clearfix">
                 <button
                   className="button is-primary is-outlined is-pulled-right"
@@ -68,6 +73,7 @@ class Login extends React.Component {
                   Submit
                 </button>
               </div>
+            </div>
             </div>
           </div>
         </form>
