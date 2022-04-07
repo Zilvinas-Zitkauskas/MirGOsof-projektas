@@ -3,8 +3,8 @@ const cors = require('cors')
 const { readFile } = require('fs/promises');
 
 const fs = require("fs");
-var data = fs.readFileSync("db.json/products");
-var myObject = JSON.parse(data);
+// var data = fs.readFileSync("db.json/products");
+// var myObject = JSON.parse(data);
 
 const bodyParser = require('body-parser')
 const environment = require('./environment')

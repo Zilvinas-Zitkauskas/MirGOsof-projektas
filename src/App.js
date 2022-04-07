@@ -56,7 +56,7 @@ export default class App extends Component {
   forgotPassword = async (email) => {
     const res = await axios.post(
       `${environment.serverUrl}/forgotpassword`,
-      { email},
+      { email },
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
@@ -75,7 +75,7 @@ export default class App extends Component {
   forgotPassword = async (email) => {
     const res = await axios.post(
       `${environment.serverUrl}/forgotpassword`,
-      { email},
+      { email },
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
@@ -96,7 +96,7 @@ export default class App extends Component {
       this.routerRef.current.history.push("/login");
       return;
     }
-  
+
     const products = this.state.products.map(p => {
       if (true) {
         axios.put(
@@ -110,20 +110,20 @@ export default class App extends Component {
     this.setState({ products });
   };
 
-  
+
 
   checkout = () => {
     if (!this.state.user) {
       this.routerRef.current.history.push("/login");
       return;
     }
-  
+
     const cart = this.state.cart;
-  
+
     const products = this.state.products.map(p => {
       if (cart[p.name]) {
         p.stock = p.stock - cart[p.name].amount;
-  
+
         axios.put(
           `http://localhost:3001/products/${p.id}`,
           { ...p },
@@ -131,7 +131,7 @@ export default class App extends Component {
       }
       return p;
     });
-  
+
     this.setState({ products });
     this.clearCart();
   };
@@ -151,7 +151,7 @@ export default class App extends Component {
     cart = cart ? JSON.parse(cart) : {};
 
     this.setState({ user, products: products.data, cart });
-  }  
+  }
   addProduct = (product, callback) => {
     let products = this.state.products.slice();
     products.push(product);
@@ -183,31 +183,31 @@ export default class App extends Component {
       this.routerRef.current.history.push("/login");
       return;
     }
-  
+
     const products = this.state.products.map(p => {
       if (product[p.name]) {
         axios
-        .delete(`http://localhost:3001/products/${product.id}`)
-        .then(response => {
-          window.confirm(`Delete ${product.name}?`);
-      
-        });
-        
+          .delete(`http://localhost:3001/products/${product.id}`)
+          .then(response => {
+            window.confirm(`Delete ${product.name}?`);
+
+          });
+
       }
       return p;
     });
-  
+
     this.setState({ products });
-  
+
   };
-  
+
   removeFromCart = cartItemId => {
     let cart = this.state.cart;
     delete cart[cartItemId];
     localStorage.setItem("cart", JSON.stringify(cart));
     this.setState({ cart });
   };
-  
+
   clearCart = () => {
     let cart = {};
     localStorage.removeItem("cart");
@@ -279,15 +279,15 @@ export default class App extends Component {
                     <Link to="/register" className="navbar-item">
                       Register
                     </Link>
-                    <Link to="/about" className="navbar-item">
-                      About
-                    </Link>
                   </>
                 ) : (
                   <Link to="/" onClick={this.logout} className="navbar-item">
                     Logout
                   </Link>
                 )}
+                <Link to="/about" className="navbar-item">
+                  About
+                </Link>
               </div>
             </nav>
             <Routes>
