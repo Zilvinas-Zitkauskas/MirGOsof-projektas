@@ -10,6 +10,7 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import About from './components/About';
 
+
 import Context from "./Context";
 import environment from './environment'
 
@@ -38,6 +39,24 @@ export default class App extends Component {
     const res = await axios.post(
       `${environment.serverUrl}/login`,
       { email, password },
+    ).catch((res) => {
+      return { status: 401, message: 'Unauthorized' }
+    })
+
+    if (res.status === 200) {
+      const user = res.data;
+      this.setState({ user });
+      localStorage.setItem("user", JSON.stringify(user));
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  forgotPassword = async (email) => {
+    const res = await axios.post(
+      `${environment.serverUrl}/forgotpassword`,
+      { email},
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
@@ -132,7 +151,12 @@ export default class App extends Component {
     cart = cart ? JSON.parse(cart) : {};
 
     this.setState({ user, products: products.data, cart });
-  }
+  }  
+  addProduct = (product, callback) => {
+    let products = this.state.products.slice();
+    products.push(product);
+    this.setState({ products }, () => callback && callback());
+  };
 
   logout = e => {
     e.preventDefault();
@@ -233,7 +257,7 @@ export default class App extends Component {
                 <Link to="/products" className="navbar-item">
                   Products
                 </Link>
-                {this.state.user && this.state.user.accessLevel < 1 && (
+                {this.state.user && this.state.user.email == "admin@admin.com" && (
                   <Link to="/add-product" className="navbar-item">
                     Add Product
                   </Link>
@@ -276,6 +300,7 @@ export default class App extends Component {
               <Route exact path="/forgotpassword" element={<ForgotPassword />} />
               <Route exact path="/resetpassword" element={<ResetPassword />} />
               <Route exact path="/about" element={<About />} />
+
             </Routes>
           </div>
         </Router>

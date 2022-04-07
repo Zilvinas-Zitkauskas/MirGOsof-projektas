@@ -63,6 +63,7 @@ class Login extends React.Component {
                 <div className="has-text-danger">{this.state.error}</div>
               )}
               <div className="has-text">
+                
                 <NavLink to="/forgotpassword">
                   Forgot password?
                 </NavLink>
@@ -72,8 +73,9 @@ class Login extends React.Component {
                   >
                     Submit
                   </button>
-                </div>
+
               </div>
+            </div>
             </div>
           </div>
         </form>

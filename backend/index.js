@@ -2,6 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const { readFile } = require('fs/promises');
 
+const fs = require("fs");
+var data = fs.readFileSync("db.json/products");
+var myObject = JSON.parse(data);
+
 const bodyParser = require('body-parser')
 const environment = require('./environment')
 
@@ -40,6 +44,27 @@ app.post('/register', jsonParser, function (req, res) {
   registeredUsers.set(email, req.body)
   res.sendStatus(200);
 })
+
+
+// app.post('/add-product', jsonParser, function (req, res) {
+//   const { name, price, stock, shortDesc, description } = req.body;
+//   const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
+//   let newData = {
+//           id,
+//           name,
+//           price,
+//           shortDesc,
+//           description,
+//           stock: stock || 0
+//   };
+//   var newData2 = JSON.stringify(myObject);
+//   fs.writeFile("data2.json", newData2, (err) => {
+//   // Error checking
+//   if (err) throw err;
+//   console.log("New data added");
+// });
+//   myObject.push(newData);
+//   res.sendStatus(200).send(json.products);
 
 app.post('/forgotpassword', jsonParser, function (req, res) {
   const { email } = req.body;
