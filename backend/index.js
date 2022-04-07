@@ -45,6 +45,7 @@ app.post('/register', jsonParser, function (req, res) {
   res.sendStatus(200);
 })
 
+
 // app.post('/add-product', jsonParser, function (req, res) {
 //   const { name, price, stock, shortDesc, description } = req.body;
 //   const id = Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -64,6 +65,7 @@ app.post('/register', jsonParser, function (req, res) {
 // });
 //   myObject.push(newData);
 //   res.sendStatus(200).send(json.products);
+
 app.post('/forgotpassword', jsonParser, function (req, res) {
   const { email } = req.body;
   if (!registeredUsers.has(email)) {

@@ -63,15 +63,17 @@ class Login extends React.Component {
                 <div className="has-text-danger">{this.state.error}</div>
               )}
               <div className="has-text">
-             <NavLink to="/forgotpassword">
-              Forgot password?
-              </NavLink>
-              <div className="field is-clearfix">
-                <button
-                  className="button is-primary is-outlined is-pulled-right"
-                >
-                  Submit
-                </button>
+                
+                <NavLink to="/forgotpassword">
+                  Forgot password?
+                </NavLink>
+                <div className="field is-clearfix">
+                  <button
+                    className="button is-primary is-outlined is-pulled-right"
+                  >
+                    Submit
+                  </button>
+
               </div>
             </div>
             </div>

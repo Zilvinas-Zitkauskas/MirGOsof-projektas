@@ -7,7 +7,7 @@ import { useState } from 'react';
 function PasswordChange() {
   let [error, setError] = useState(null);
   let [message, setMessage] = useState(null);
-  
+
   let navigate = useNavigate();
   return (
     <>
@@ -46,7 +46,7 @@ function PasswordChange() {
 
                 {error?.error && <div className="has-text-danger">{error?.error}</div>}
                 {message && <div className="has-text-success">{message}</div>}
-                
+
               </Form>
             )}
           </Formik>
@@ -55,6 +55,7 @@ function PasswordChange() {
     </>
   )
 }
+
 
 
 export default PasswordChange;

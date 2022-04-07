@@ -42,7 +42,7 @@ function ResetPassword() {
                   <label className="label" htmlFor="newPassword">New password</label>
                   <Field className="input" id="password" type="password" name="newPassword" />
                 </div>
-                
+
                 <div className="field">
                   <label className="label" htmlFor="confirmPassword">Confirm new password</label>
                   <Field className="input" id="password" type="password" name="confirmPassword" />
