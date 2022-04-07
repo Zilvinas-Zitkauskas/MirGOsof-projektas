@@ -6,6 +6,9 @@ import Cart from './components/Cart';
 import Login from './components/Login';
 import ProductList from './components/ProductList';
 import Registration from './components/Registration';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import About from './components/About';
 
 import Context from "./Context";
 import environment from './environment'
@@ -35,6 +38,25 @@ export default class App extends Component {
     const res = await axios.post(
       `${environment.serverUrl}/login`,
       { email, password },
+    ).catch((res) => {
+      return { status: 401, message: 'Unauthorized' }
+    })
+
+    if (res.status === 200) {
+      const user = res.data;
+
+      this.setState({ user });
+      localStorage.setItem("user", JSON.stringify(user));
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  forgotPassword = async (email) => {
+    const res = await axios.post(
+      `${environment.serverUrl}/forgotpassword`,
+      { email},
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
@@ -233,6 +255,9 @@ export default class App extends Component {
                     <Link to="/register" className="navbar-item">
                       Register
                     </Link>
+                    <Link to="/about" className="navbar-item">
+                      About
+                    </Link>
                   </>
                 ) : (
                   <Link to="/" onClick={this.logout} className="navbar-item">
@@ -248,6 +273,9 @@ export default class App extends Component {
               <Route exact path="/cart" element={<Cart />} />
               <Route exact path="/add-product" element={<AddProduct />} />
               <Route exact path="/products" element={<ProductList />} />
+              <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+              <Route exact path="/resetpassword" element={<ResetPassword />} />
+              <Route exact path="/about" element={<About />} />
             </Routes>
           </div>
         </Router>
