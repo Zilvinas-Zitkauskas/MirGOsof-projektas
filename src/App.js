@@ -14,6 +14,7 @@ import About from './components/About';
 import MyAccount from './components/MyAccount';
 import image from './logo.png'
 
+
 import Context from "./Context";
 import environment from './environment'
 
@@ -286,17 +287,16 @@ export default class App extends Component {
                     </Link>
                   </>
                 ) : (
+                  <>
                   <Link to="/" onClick={this.logout} className="navbar-item">
                     Logout
                   </Link>
-                )(                 
-                  <Link to="/myaccount" className="navbar-item">
-                    My account
-                  </Link>
+                                
+                   <Link to="/myaccount" className="navbar-item">
+                     My account
+                    </Link>
+                    </>
                 )}
-                  <Link to="/myaccount" className="navbar-item">
-                    My account
-                  </Link>
                 <Link to="/about" className="navbar-item">
                   About
                 </Link>
