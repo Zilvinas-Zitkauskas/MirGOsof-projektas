@@ -9,6 +9,7 @@ import Registration from './components/Registration';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import About from './components/About';
+import image from './logo.png'
 
 
 import Context from "./Context";
@@ -16,6 +17,8 @@ import environment from './environment'
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import MyAccount from "./components/MyAccount";
+import FAQ from "./components/FAQ";
 
 
 export default class App extends Component {
@@ -235,6 +238,7 @@ export default class App extends Component {
               aria-label="main navigation"
             >
               <div className="navbar-brand">
+                <img src ={image} width="100" height="50"></img>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
                 <label
                   role="button"
@@ -284,10 +288,17 @@ export default class App extends Component {
                   <Link to="/" onClick={this.logout} className="navbar-item">
                     Logout
                   </Link>
+
                 )}
+                  <Link to="/myaccount" className="navbar-item">
+                    My account
+                  </Link>
                 <Link to="/about" className="navbar-item">
                   About
                 </Link>
+                <Link to="/faq" className="navbar-item">
+                    FAQ
+                  </Link>
               </div>
             </nav>
             <Routes>
@@ -300,6 +311,8 @@ export default class App extends Component {
               <Route exact path="/forgotpassword" element={<ForgotPassword />} />
               <Route exact path="/resetpassword" element={<ResetPassword />} />
               <Route exact path="/about" element={<About />} />
+              <Route exact path="/myaccount" element={<MyAccount />} />
+              <Route exact path="/faq" element={<FAQ />} />
 
             </Routes>
           </div>

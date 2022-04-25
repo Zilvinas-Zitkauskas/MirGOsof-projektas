@@ -2,6 +2,9 @@ import React from "react";
 import ProductItem from "./ProductItem";
 import withContext from "../withContext";
 import './Style.css';
+import BootCarousel from "./BootCarousel.js";
+
+
 const ProductList = props => {
   const { products } = props.context;
 
@@ -12,7 +15,10 @@ const ProductList = props => {
           <h4 className="title">Our Products</h4>
         </div>
       </div>
-      <br />
+      <br/>
+      <div className="carousele" >
+      <BootCarousel />
+      </div>
       <div className="container">
         <div className="column columns is-multiline">
           {products && products.length ? (
