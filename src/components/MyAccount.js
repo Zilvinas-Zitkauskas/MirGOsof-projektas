@@ -1,13 +1,8 @@
-import { Formik, Form, Field } from 'formik';
-import environment from '../environment'
-import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-function About() {
-  let [error, setError] = useState(null);
+function MyAccount() {
 
-  let navigate = useNavigate();
   return (
     <>
       <Hero title="My account" />
@@ -16,7 +11,14 @@ function About() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
         <div className="field">
-        <label className="label" htmlFor="text">Jūsų paskyros duomenys.</label>
+        <NavLink to="/changepassword">
+                  Change Password
+        </NavLink> 
+        </div>
+        <div className="field">
+        <NavLink to="/changeinformation">
+                  Change acount information
+        </NavLink>
         </div>
         </div>
       </div>
@@ -25,4 +27,4 @@ function About() {
 }
 
 
-export default About;
+export default MyAccount;

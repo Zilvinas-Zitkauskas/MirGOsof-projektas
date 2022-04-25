@@ -4,21 +4,22 @@ import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
 
-function PasswordChange() {
-  let [error, setError] = useState(null);
-  let [message, setMessage] = useState(null);
 
+function ChangePassword() {
+  let [error, setError] = useState(null);
+  let navigate = useNavigate();
   return (
     <>
-      <Hero title="Remind password" />
+      <Hero title="Change password" />
       <br />
       <br />
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
-            email: ''
+            newPassword: '',
+            confirmPassword: '',
           }} onSubmit={(values, { setSubmitting }) => {
-            fetch(`${environment.serverUrl}/forgotpassword`,
+            fetch(`${environment.serverUrl}/changePassword`,
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -28,7 +29,7 @@ function PasswordChange() {
                 if (!value.ok) {
                   return value.json()
                 }
-                setMessage("Check your email, for password reset link.")
+                navigate('/myaccount');
               })
               .then(result => {
                 setError(result);
@@ -38,13 +39,22 @@ function PasswordChange() {
             {({ isSubmitting }) => (
               <Form>
                 <div className="field">
-                  <label className="label" htmlFor="email">Email</label>
-                  <Field className="input" id="email" type="email" name="email" />
+                  <label className="label" htmlFor="oldPassword">Old password</label>
+                  <Field className="input" id="password" type="password" name="newPassword" />
                 </div>
-                <button className="button is-primary is-outlined is-pulled-right" type="submit" disabled={isSubmitting}>Submit</button>
+
+                <div className="field">
+                  <label className="label" htmlFor="newPassword">New password</label>
+                  <Field className="input" id="password" type="password" name="newPassword" />
+                </div>
+
+                <div className="field">
+                  <label className="label" htmlFor="confirmPassword">Confirm new password</label>
+                  <Field className="input" id="password" type="password" name="confirmPassword" />
+                </div>
+                <button className="button is-primary is-outlined is-pulled-right" type="submit" disabled={isSubmitting}>Continue</button>
 
                 {error?.error && <div className="has-text-danger">{error?.error}</div>}
-                {message && <div className="has-text-success">{message}</div>}
 
               </Form>
             )}
@@ -55,6 +65,4 @@ function PasswordChange() {
   )
 }
 
-
-
-export default PasswordChange;
+export default ChangePassword;

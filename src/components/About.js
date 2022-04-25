@@ -1,13 +1,7 @@
-import { Formik, Form, Field } from 'formik';
-import environment from '../environment'
-import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
-import { useState } from 'react';
 
 function About() {
-  let [error, setError] = useState(null);
 
-  let navigate = useNavigate();
   return (
     <>
       <Hero title="About" />

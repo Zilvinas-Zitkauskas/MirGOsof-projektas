@@ -7,8 +7,11 @@ import Login from './components/Login';
 import ProductList from './components/ProductList';
 import Registration from './components/Registration';
 import ForgotPassword from './components/ForgotPassword';
+import ChangePassword from './components/ChangePassword';
+import ChangeInformation from './components/ChangeInformation';
 import ResetPassword from './components/ResetPassword';
 import About from './components/About';
+import MyAccount from './components/MyAccount';
 import image from './logo.png'
 
 
@@ -17,7 +20,6 @@ import environment from './environment'
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import MyAccount from "./components/MyAccount";
 import FAQ from "./components/FAQ";
 
 
@@ -285,14 +287,16 @@ export default class App extends Component {
                     </Link>
                   </>
                 ) : (
+                  <>
                   <Link to="/" onClick={this.logout} className="navbar-item">
                     Logout
                   </Link>
-
+                                
+                   <Link to="/myaccount" className="navbar-item">
+                     My account
+                    </Link>
+                    </>
                 )}
-                  <Link to="/myaccount" className="navbar-item">
-                    My account
-                  </Link>
                 <Link to="/about" className="navbar-item">
                   About
                 </Link>
@@ -310,6 +314,8 @@ export default class App extends Component {
               <Route exact path="/products" element={<ProductList />} />
               <Route exact path="/forgotpassword" element={<ForgotPassword />} />
               <Route exact path="/resetpassword" element={<ResetPassword />} />
+              <Route exact path="/changepassword" element={<ChangePassword />} />
+              <Route exact path="/changeinformation" element={<ChangeInformation />} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
