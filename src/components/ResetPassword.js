@@ -1,13 +1,27 @@
 import { Formik, Form, Field } from 'formik';
 import environment from '../environment'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Hero from './Hero'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function ResetPassword() {
   let [error, setError] = useState(null);
+  let [userEmail, setUserEmail] = useState(null);
   let navigate = useNavigate();
+  let { id } = useParams();
+  useEffect(() => {
+    fetch(`${environment.serverUrl}/resetPassword?token=${id}`)
+      .then((response) => response.json())
+      .then((response) => {
+        if (!response.userEmail) {
+          // error
+          return;
+        }
+        const { userEmail } = response;
+        setUserEmail(userEmail);
+      })
+  })
   return (
     <>
       <Hero title="Reset password" />
@@ -19,11 +33,11 @@ function ResetPassword() {
             newPassword: '',
             confirmPassword: '',
           }} onSubmit={(values, { setSubmitting }) => {
-            fetch(`${environment.serverUrl}/resetpassword`,
+            fetch(`${environment.serverUrl}/updatepassword`,
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values)
+                body: JSON.stringify({ ...values, userEmail })
               })
               .then((value) => {
                 if (!value.ok) {
