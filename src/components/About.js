@@ -18,7 +18,7 @@ function About() {
         <br>
         </br>
         <label className="label" htmlFor="text">Kontaktai.</label>
-        <label className="text" htmlFor="text">El. paštas: info@mirgostore.lt.</label>
+        <label className="text" htmlFor="text">El. paštas: mirgostore@gmail.com.</label>
         <br>
         </br>
         <label className="text" htmlFor="text">tel. nr.: 867700012.</label>

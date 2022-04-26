@@ -13,6 +13,8 @@ import ResetPassword from './components/ResetPassword';
 import About from './components/About';
 import MyAccount from './components/MyAccount';
 import image from './logo.png'
+import Support from "./components/Support";
+
 
 
 import Context from "./Context";
@@ -303,6 +305,10 @@ export default class App extends Component {
                 <Link to="/faq" className="navbar-item">
                     FAQ
                   </Link>
+                  <Link to="/support" className="navbar-item">
+                    Support
+                </Link>
+
               </div>
             </nav>
             <Routes>
@@ -319,6 +325,7 @@ export default class App extends Component {
               <Route exact path="/about" element={<About />} />
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
+              <Route exact path="/support" element={<Support />} />
 
             </Routes>
           </div>
