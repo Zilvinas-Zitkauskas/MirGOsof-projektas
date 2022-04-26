@@ -1,4 +1,4 @@
-const { reset } = require('../db/user');
+const { reset } = require('../db/resetToken');
 
 module.exports = {
   resetPassword: async function (req, res) {
