@@ -14,10 +14,10 @@ async function register (req, res) {
     res.status(422).send({ error: 'Email is already registered!' });
     return;
   }
-  await addUser(email, req.body);
+  await addUser(req.body);
   res.sendStatus(204);
 }
 
 module.exports = {
-  register,
+  register
 }

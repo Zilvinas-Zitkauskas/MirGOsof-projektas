@@ -1,5 +1,5 @@
-const crypto = require('crypto');
-const { findByEmail, update } = require('../db/user');
+const { findByEmail } = require('../db/user');
+const { createToken } = require('../db/resetToken');
 const { clientUrl, emailAddress, emailPassword } = require('../environment');
 const nodemailer = require('nodemailer');
 
@@ -11,13 +11,8 @@ module.exports = {
       res.status(422).send({ error: 'Email not registered!' })
       return;
     }
-
-    const token = crypto.randomBytes(20).toString('hex');
-    await update({
-      ...user,
-      resetPasswordToken: token,
-      resetPasswordExpires: Date.now() + 3600000,
-    });
+    
+    const token = createToken(user.email);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
