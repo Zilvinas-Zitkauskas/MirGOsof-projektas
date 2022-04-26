@@ -313,7 +313,7 @@ export default class App extends Component {
               <Route exact path="/add-product" element={<AddProduct />} />
               <Route exact path="/products" element={<ProductList />} />
               <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-              <Route exact path="/resetpassword" element={<ResetPassword />} />
+              <Route exact path="/resetpassword/:id" element={<ResetPassword />} />
               <Route exact path="/changepassword" element={<ChangePassword />} />
               <Route exact path="/changeinformation" element={<ChangeInformation />} />
               <Route exact path="/about" element={<About />} />
