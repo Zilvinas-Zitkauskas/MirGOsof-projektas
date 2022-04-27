@@ -1,6 +1,6 @@
 const pool = require('./db').pool;
 
-function addProduct(data) {
+function Addproduct(data) {
   return new Promise((resolve) => {
     const product = {
       name: data.name,
@@ -19,7 +19,7 @@ function addProduct(data) {
   });
 }
 
-function getProduct() {
+function Getproduct() {
   return new Promise((resolve) => {
     pool.query(`SELECT * FROM product;`, (err, results, fields) => {
       if (!err) {
@@ -34,6 +34,6 @@ function getProduct() {
 }
 
 module.exports = {
-  addProduct,
-  getProduct
+  Addproduct,
+  Getproduct
 }

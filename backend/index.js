@@ -12,9 +12,9 @@ const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
 const { support } = require('./routes/support')
 
-const { addProduct } = require('./routes/addProduct')
+const { addProduct } = require('./routes/addproduct')
 const { changePassword } = require('./routes/changePassword')
-const { getProduct } = require('./routes/getProduct')
+const { getProduct } = require('./routes/getproduct')
 
 const app = express()
 const jsonParser = bodyParser.json();

@@ -1,13 +1,7 @@
-const { addProduct } = require('../db/product');
+const { Addproduct } = require('../db/product');
 
 async function addProduct (req, res) {
-  // const { name, price, stock, description, picture, category} = req.body;
-  // if (!name || !price || !stock || !description || !category) {
-  //   console.log(req.body);
-  //   res.status(400).send({ error: 'All fields are required!' });
-  //   return;
-  // }
-  await addProduct(req.body);
+  await Addproduct(req.body);
   res.sendStatus(204);
 }
 
