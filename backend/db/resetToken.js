@@ -4,16 +4,15 @@ const crypto = require('crypto');
 const resetToken = new Map();
 
 function reset(token) {
-    const fuck = resetToken.get(token);
-    if (!fuck)
+    const user = resetToken.get(token);
+    if (!user)
     {
       return null;
     }
-    if (Date.now() < fuck.expires) {
-      return(fuck.email);
+    if (Date.now() < user.expires) {
+      return(user.email);
     }
     return null;
-
 }
 
 function createToken(email) {

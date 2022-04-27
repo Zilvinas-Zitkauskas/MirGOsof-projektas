@@ -14,6 +14,7 @@ const { register } = require('./routes/register')
 const { login } = require('./routes/login')
 const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
+const { changePassword } = require('./routes/changePassword')
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -50,6 +51,8 @@ app.post('/forgotpassword', jsonParser, forgotPassword)
 app.get('/resetpassword', resetPassword)
 
 app.post('/updatepassword', jsonParser, updatePassword)
+
+app.post('/changepassword', jsonParser, changePassword)
 
 app.get('/products', async function (req, res) {
   const json = JSON.parse(
