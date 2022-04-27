@@ -10,6 +10,7 @@ const { register } = require('./routes/register')
 const { login } = require('./routes/login')
 const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
+const { support } = require('./routes/support')
 
 const { addProduct } = require('./routes/addproduct')
 const { changePassword } = require('./routes/changePassword')
@@ -34,17 +35,9 @@ app.post('/updatepassword', jsonParser, updatePassword)
  
 app.post('/changepassword', jsonParser, changePassword)
 
+app.post('/support', jsonParser, support)
 app.get('/products', getProduct)
 
-// app.get('/products', async function (req, res) {
-//   await(getProduct());
-//   const json = JSON.parse(
-//     await readFile('./db.json', 'utf-8')
-//   )
-//   console.log(json);
-//   //console.log(product.req);
-//   res.status(200).send(json.products);
-// });
 
 app.post('/login', jsonParser, login)
 
