@@ -21,6 +21,7 @@ import environment from './environment'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import FAQ from "./components/FAQ";
+import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
 
 export default class App extends Component {
@@ -50,25 +51,6 @@ export default class App extends Component {
 
     if (res.status === 200) {
       const user = res.data;
-      this.setState({ user });
-      localStorage.setItem("user", JSON.stringify(user));
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  forgotPassword = async (email) => {
-    const res = await axios.post(
-      `${environment.serverUrl}/forgotpassword`,
-      { email },
-    ).catch((res) => {
-      return { status: 401, message: 'Unauthorized' }
-    })
-
-    if (res.status === 200) {
-      const user = res.data;
-
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
       return true;
@@ -141,11 +123,16 @@ export default class App extends Component {
     this.clearCart();
   };
   logout = e => {
-    e.preventDefault();
-    this.setState({ user: null });
-    localStorage.removeItem("user");
+      const confirmBox = window.confirm(
+      "Do you really want to logout?"
+        )
+      if (confirmBox === true) {
+        e.preventDefault();
+        this.setState({ user: null });
+        localStorage.removeItem("user");
+      }
+    
   };
-
 
   async componentDidMount() {
     let user = localStorage.getItem("user");
@@ -157,17 +144,6 @@ export default class App extends Component {
 
     this.setState({ user, products: products.data, cart });
   }
-  addProduct = (product, callback) => {
-    let products = this.state.products.slice();
-    products.push(product);
-    this.setState({ products }, () => callback && callback());
-  };
-
-  logout = e => {
-    e.preventDefault();
-    this.setState({ user: null });
-    localStorage.removeItem("user");
-  };
 
   addToCart = cartItem => {
     let cart = this.state.cart;
@@ -240,7 +216,7 @@ export default class App extends Component {
               aria-label="main navigation"
             >
               <div className="navbar-brand">
-                <img src ={image} width="100" height="50"></img>
+                <img src ={image} width="50" height="20"></img>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
                 <label
                   role="button"
