@@ -1,4 +1,3 @@
-const e = require("express");
 const crypto = require('crypto');
 
 const resetToken = new Map();
