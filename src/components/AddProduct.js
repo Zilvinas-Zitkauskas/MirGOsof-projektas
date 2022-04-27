@@ -1,10 +1,12 @@
 import { Formik, Form, Field } from 'formik';
 import environment from '../environment'
 import Hero from './Hero'
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
-
-function Settings() {
+function Addproduct() {
+  let [error, setError] = useState(null);
+  let navigate = useNavigate();
   return (
     <>
       <Hero title="Add Product" />
@@ -13,11 +15,12 @@ function Settings() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
-            Name: '',
+            name: '',
+            stock: 0,
             price: '',
-            shortDesc: '',
             description: '',
-            stock: 0
+            picture:'',
+            category: ''
           }} onSubmit={(values, { setSubmitting }) => {
             fetch(`${environment.serverUrl}/add-product`,
               {
@@ -25,37 +28,57 @@ function Settings() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values)
               })
-              .then((value) => value.json())
+              .then((value) => {
+                if (!value.ok) {
+                  return value.json()
+                }
+                navigate('/products');
+              })
               .then(result => {
-                alert(JSON.stringify(result, null, 2));
+                setError(result);
                 setSubmitting(false);
               })
-              (<Navigate to="/products" />);
+
           }}
           >
             {({ isSubmitting }) => (
               <Form>
                 <div className="field">
-                  <label className="label" htmlFor="Name">Product name :</label>
-                  <Field className="input" id="Name" type="text" name="Name" />
+                  <label className="label" htmlFor="name">Product name :</label>
+                  <Field className="input" id="name" type="text" name="name" />
                 </div>
                 <div className="field">
                   <label className="label" htmlFor="price">Price: </label>
                   <Field className="input" id="price" type="number" name="price" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="shortDesc">Short description: </label>
-                  <Field className="input" id="shortDesc" type="text" name="shortDesc" />
+                  <label className="label" htmlFor="stock">Available in Stock: </label>
+                  <Field className="input" id="stock" type="number" name="stock" />
                 </div>
                 <div className="field">
                   <label className="label" htmlFor="description">Description: </label>
                   <Field className="input" id="description" type="text" name="description" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="stock">Available in Stock: </label>
-                  <Field className="input" id="stock" type="number" name="stock" />
+                  <label className="label" htmlFor="picture">Picture: </label>
+                  <Field className="input" id="picture" type="text" name="picture" />
                 </div>
+                <div className="field">
+                <label className="label" htmlFor="category">Category:</label>
+                  <Field className="input" id="category" as="select" name="category">
+                  <option value="1">Telefonai</option>
+                  <option value="2">Kompiuterinė technika</option>
+                  <option value="3">Virtuvinė įranga</option>
+                  <option value="4">Mašinų aksesuarai</option>
+                  <option value="5">Išmaniųjų namų įranga</option>
+                  <option value="6">Televizoriai</option>
+                  <option value="7">Žaidimų įranga</option>
+                  <option value="8">Laisvalaikis</option>
+                </Field>
+                </div>
+               
                 <button className="button is-primary is-outlined is-pulled-right" type="submit" disabled={isSubmitting}>Continue</button>
+                {error?.error && <div className="has-text-danger">{error?.error}</div>}
               </Form>
             )}
           </Formik>
@@ -65,4 +88,4 @@ function Settings() {
   )
 }
 
-export default Settings;
+export default Addproduct;

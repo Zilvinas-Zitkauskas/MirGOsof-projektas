@@ -23,6 +23,7 @@ import environment from './environment'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import FAQ from "./components/FAQ";
+import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
 
 export default class App extends Component {
@@ -122,9 +123,15 @@ export default class App extends Component {
     this.clearCart();
   };
   logout = e => {
-    e.preventDefault();
-    this.setState({ user: null });
-    localStorage.removeItem("user");
+      const confirmBox = window.confirm(
+      "Do you really want to logout?"
+        )
+      if (confirmBox === true) {
+        e.preventDefault();
+        this.setState({ user: null });
+        localStorage.removeItem("user");
+      }
+    
   };
 
   async componentDidMount() {
@@ -137,11 +144,13 @@ export default class App extends Component {
 
     this.setState({ user, products: products.data, cart });
   }
+
   addProduct = (product, callback) => {
     let products = this.state.products.slice();
     products.push(product);
     this.setState({ products }, () => callback && callback());
   };
+
 
   addToCart = cartItem => {
     let cart = this.state.cart;
@@ -214,7 +223,7 @@ export default class App extends Component {
               aria-label="main navigation"
             >
               <div className="navbar-brand">
-                <img src ={image} width="100" height="50"></img>
+                <img src ={image} width="50" height="20"></img>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
                 <label
                   role="button"
