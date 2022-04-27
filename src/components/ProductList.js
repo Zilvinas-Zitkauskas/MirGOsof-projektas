@@ -69,6 +69,7 @@ const ProductList = props => {
                 product={product}
                 key={index}
                 addToCart={props.context.addToCart}
+                state={props.context.state}
               />
             ))
           ) : (

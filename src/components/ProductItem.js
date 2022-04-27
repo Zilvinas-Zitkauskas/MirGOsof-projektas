@@ -1,9 +1,14 @@
 import React from "react";
 import './Style.css';
+import UpdateProduct from "./UpdateProduct";
+import { useNavigate } from "react-router-dom";
 
 const ProductItem = props => {
+  let navigate = useNavigate();
+  function move(e) {
+    navigate('/updateproduct');
+  }
   const { product } = props;
-
   return (
     <div className=" column is-half" id={product.id} name={product.name.toString().toLowerCase()}>
       <div className="box" >
@@ -28,6 +33,13 @@ const ProductItem = props => {
               <small className="has-text-danger">Out Of Stock</small>
             )}
             <div className="is-clearfix">
+            {props.state && props.state.email == "admin@admin.com" && (
+                  <button className="button is-small is-outlined2 is-primary   is-pulled-right"
+                  onClick={move}>
+                   Edit
+                   </button>
+                )}
+
               <button
                 className="button is-small is-outlined2 is-primary   is-pulled-right"
                 onClick={() =>
@@ -47,5 +59,7 @@ const ProductItem = props => {
     </div>
   );
 };
+
+
 
 export default ProductItem;

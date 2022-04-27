@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const CartItem = props => {
   const { cartItem, cartKey } = props;
 
@@ -11,8 +12,8 @@ const CartItem = props => {
           <div className="media-left">
             <figure className="image is-64x64">
               <img
-                src="https://bulma.io/images/placeholders/128x128.png"
-                alt={product.shortDesc}
+                src="https://picsum.photos/64"
+                alt={product.description}
               />
             </figure>
           </div>
@@ -21,8 +22,21 @@ const CartItem = props => {
               {product.name}{" "}
               <span className="tag is-primary">${product.price}</span>
             </b>
-            <div>{product.shortDesc}</div>
-            <small>{`${amount} in cart`}</small>
+            <div>{product.description}</div>
+            <small>{`${amount} in cart  `}
+            <button className="increase" onClick={() =>
+                  props.addToCart({
+                    id: product.name,
+                    product,
+                    amount: 1
+                  })
+                }>{String.fromCharCode(11205)}</button><button className="decrease" 
+                onClick={() => props.lessFromCart({
+                  id: product.name,
+                  product,
+                  amount: 1
+                })}>{String.fromCharCode(11206)}</button>
+            </small>
           </div>
           <div
             className="media-right"

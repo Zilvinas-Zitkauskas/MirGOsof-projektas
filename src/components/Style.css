@@ -32,3 +32,15 @@
     align-self: center;
     margin: 0 auto;
 }
+.decrease {
+    background-color: rgba(0, 0, 0, 0);
+    width:"20px";
+    height:"20px";
+    border:0px;
+}
+.increase{
+    background-color: rgba(0, 0, 0, 0);
+    width:"20px";
+    height:"20px";
+    border:0px;
+}

@@ -14,7 +14,7 @@ import About from './components/About';
 import MyAccount from './components/MyAccount';
 import image from './logo.png'
 import Support from "./components/Support";
-
+import UpdateProduct from "./components/UpdateProduct"
 
 
 import Context from "./Context";
@@ -24,7 +24,6 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import FAQ from "./components/FAQ";
 import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
-
 
 export default class App extends Component {
 
@@ -188,9 +187,23 @@ export default class App extends Component {
 
   };
 
-  removeFromCart = cartItemId => {
+veFromCart = cartItemId => {
     let cart = this.state.cart;
     delete cart[cartItemId];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    this.setState({ cart });
+  };
+  lessFromCart = cartItem => {
+    let cart = this.state.cart;
+
+    if (cart[cartItem.id].amount > 1) {
+      cart[cartItem.id].amount -= cartItem.amount;
+    } else {
+      delete cart[cartItem.id];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      this.setState({ cart });
+    }
+
     localStorage.setItem("cart", JSON.stringify(cart));
     this.setState({ cart });
   };
@@ -207,11 +220,13 @@ export default class App extends Component {
         value={{
           ...this.state,
           removeFromCart: this.removeFromCart,
+          lessFromCart: this.lessFromCart,
           addToCart: this.addToCart,
           login: this.login,
           addProduct: this.addProduct,
           clearCart: this.clearCart,
-          checkout: this.checkout
+          checkout: this.checkout,
+          state: this.state.user,
         }}
       >
         <Router refs={this.routerRef}>
@@ -305,6 +320,7 @@ export default class App extends Component {
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
               <Route exact path="/support" element={<Support />} />
+              <Route exact path="/updateproduct" element={<UpdateProduct />} />
             </Routes>
           </div>
         </Router>

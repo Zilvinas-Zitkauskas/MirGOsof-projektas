@@ -32,8 +32,18 @@ function Getproduct() {
     })
   });
 }
+function Updateproduct(data) {
+  return new Promise((resolve) => {
+    pool.query(`UPDATE product SET name = ? , price = ? , stock = ? , description = ? , picture = ? , fk_Category = ?  WHERE id = ?`,
+     [data.name,data.price, data.stock, data.description, data.picture, data.fk_Category, data.id], (err, result, fields) => {
+      console.log(result);
+      resolve(result);
+    })
+  })
+}
 
 module.exports = {
   Addproduct,
-  Getproduct
+  Getproduct,
+  Updateproduct
 }

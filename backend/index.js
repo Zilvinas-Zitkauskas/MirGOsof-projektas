@@ -15,6 +15,7 @@ const { support } = require('./routes/support')
 const { addProduct } = require('./routes/addproduct')
 const { changePassword } = require('./routes/changePassword')
 const { getProduct } = require('./routes/getproduct')
+const {updateProduct} = require('./routes/updateProduct')
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -33,7 +34,7 @@ app.get('/resetpassword', resetPassword)
 app.post('/updatepassword', jsonParser, updatePassword)
  
 app.post('/changepassword', jsonParser, changePassword)
-
+app.post('/updateproduct', jsonParser, updateProduct)
 app.post('/support', jsonParser, support)
 app.get('/products', getProduct)
 
