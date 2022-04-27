@@ -10,7 +10,7 @@ import { Button} from 'react-bootstrap';
 
 function Support() {
 
-    const [buttonText, setButtonText] = useState("Submit"); 
+    const [buttonText, setButtonText] = useState("Send"); 
 
     const changeText = (text) => setButtonText(text);
 
@@ -22,13 +22,11 @@ function Support() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
-            Name: '',
-            price: '',
-            shortDesc: '',
-            description: '',
-            stock: 0
+            email: '',
+            subject: '',
+            text: ''
           }} onSubmit={(values, { setSubmitting }) => {
-            fetch(`${environment.serverUrl}/add-product`,
+            fetch(`${environment.serverUrl}/support`,
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -45,14 +43,18 @@ function Support() {
             {({ isSubmitting }) => (
               <Form >
                 <div className="field">
-                  <label className="label" htmlFor="Pavadinimas">Email :</label>
-                  <Field className="input" id="Email" type="text" name="Email"/>
+                  <label className="label" htmlFor="email">Email :</label>
+                  <Field className="input" id="email" type="text" name="email"/>
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="Kaina">Ticket :</label>
-                  <Field className="input" id="Ticket" type="text" name="Ticket"/>
+                  <label className="label" htmlFor="subject">Subject :</label>
+                  <Field className="input" id="subject" type="text" name="subject"/>
                 </div>
-                 
+                <div className="field">
+                  <label className="label" htmlFor="text">Text :</label>
+                  <textarea class="textarea" id="text" placeholder="Text" name="text"></textarea>
+                </div>
+                
                 <button className="button is-primary is-outlined is-pulled-right" onClick={() => changeText("Ticket sent!")}>{buttonText}</button>
               </Form>
             )}
