@@ -3,9 +3,10 @@ import './Style.css';
 
 const ProductItem = props => {
   const { product } = props;
+
   return (
-    <div className=" column is-half">
-      <div className="box" id={product.id}>
+    <div className=" column is-half" id={product.id} name={product.name.toString().toLowerCase()}>
+      <div className="box" >
         <div className="media">
           <div className="media-left">
             <figure className="image is-64x64">
