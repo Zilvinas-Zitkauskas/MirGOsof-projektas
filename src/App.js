@@ -77,25 +77,6 @@ export default class App extends Component {
     }
   }
 
-  forgotPassword = async (email) => {
-    const res = await axios.post(
-      `${environment.serverUrl}/forgotpassword`,
-      { email },
-    ).catch((res) => {
-      return { status: 401, message: 'Unauthorized' }
-    })
-
-    if (res.status === 200) {
-      const user = res.data;
-
-      this.setState({ user });
-      localStorage.setItem("user", JSON.stringify(user));
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   removeProduct = () => {
     if (!this.state.user) {
       this.routerRef.current.history.push("/login");
@@ -114,8 +95,6 @@ export default class App extends Component {
 
     this.setState({ products });
   };
-
-
 
   checkout = () => {
     if (!this.state.user) {
@@ -146,7 +125,6 @@ export default class App extends Component {
     localStorage.removeItem("user");
   };
 
-
   async componentDidMount() {
     let user = localStorage.getItem("user");
     let cart = localStorage.getItem("cart");
@@ -161,12 +139,6 @@ export default class App extends Component {
     let products = this.state.products.slice();
     products.push(product);
     this.setState({ products }, () => callback && callback());
-  };
-
-  logout = e => {
-    e.preventDefault();
-    this.setState({ user: null });
-    localStorage.removeItem("user");
   };
 
   addToCart = cartItem => {

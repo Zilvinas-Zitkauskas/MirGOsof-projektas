@@ -3,11 +3,20 @@ const { findByEmail, update } = require('../db/user')
 module.exports = {
   updatePassword: async function (req, res) {
     const { userEmail, newPassword, confirmPassword } = req.body;
+    const user = await findByEmail(userEmail);
+    console.log({user})
+    if (!user) {
+      res.status(400).send({ error: 'Password reset link expired!' })
+      return; 
+    }
+    if (user.password == newPassword) {
+      res.status(400).send({ error: 'New password can\'t be the same as old password!' })
+      return;
+    }
     if (newPassword !== confirmPassword) {
       res.status(400).send({ error: 'Password and confirm password must match!' })
       return;
     }
-    const user = await findByEmail(userEmail);
     const updated = await update({...user, password: newPassword });
     res.status(200).send(updated);
   }
