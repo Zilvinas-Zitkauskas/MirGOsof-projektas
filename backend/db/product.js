@@ -1,6 +1,5 @@
 const pool = require('./db').pool;
-
-const products = new Map();
+const fs = require('fs')
 
 function add(data) {
   return new Promise((resolve) => {
@@ -12,7 +11,7 @@ function add(data) {
       picture: data.picture,
       fk_Category: data.category
     }
-    console.log(product);
+    //console.log(product);
     pool.query(`INSERT INTO product SET ?`, product, (err, result, fields) => {
       if (!err) {
         resolve(product);
@@ -23,14 +22,17 @@ function add(data) {
 
 function get(){
   return new Promise((resolve) => {
-    pool.query(`SELECT * FROM product ?`, (err, result, fields) => {
+    pool.query(`SELECT * FROM product;`, (err, results, fields) => {
       if (!err) {
-        if (result.length == 0) {
+        if (results.length == 0) {
           resolve(null)
         }
         else {
-          console.log(result)
-          resolve(result);
+          //results=JSON.parse(JSON.stringify(results))
+          fs.writeFile('./database.json', JSON.stringify(results), (err) => {
+            if (err) console.log('Error writing file:', err);
+        })      
+          resolve(200);
         }
       }
     })

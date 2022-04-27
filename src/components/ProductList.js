@@ -5,6 +5,16 @@ import './Style.css';
 import BootCarousel from "./BootCarousel.js";
 import Hero from './Hero';
 
+fetch("http://localhost:3001/products")
+.then(response => {
+  console.log(response);
+})
+.then(results => {
+  console.log(results);
+})
+.then(err => {
+  console.log(err);
+});
 
 const ProductList = props => {
   const { products } = props.context;

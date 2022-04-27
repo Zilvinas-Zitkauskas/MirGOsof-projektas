@@ -5,12 +5,12 @@ const ProductItem = props => {
   const { product } = props;
   return (
     <div className=" column is-half">
-      <div className="box">
+      <div className="box" id={product.id}>
         <div className="media">
           <div className="media-left">
             <figure className="image is-64x64">
               <img
-                src="https://bulma.io/images/placeholders/128x128.png"
+                src="https://picsum.photos/64"
                 alt={product.shortDesc}
               />
             </figure>
@@ -20,7 +20,7 @@ const ProductItem = props => {
               {product.name}{" "}
               <span className="tag is-primary2">${product.price}</span>
             </b>
-            <div>{product.shortDesc}</div>
+            <div>{product.description}</div>
             {product.stock > 0 ? (
               <small>{product.stock + " Available"}</small>
             ) : (

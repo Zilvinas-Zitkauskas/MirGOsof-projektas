@@ -13,9 +13,9 @@ const { resetPassword } = require('./routes/resetPassword')
 const { support } = require('./routes/support')
 
 const { addProduct } = require('./routes/addproduct')
-const { get: getproduct } = require('./db/product.js');
 const { changePassword } = require('./routes/changePassword')
-
+const { getProduct } = require('./routes/getproduct')
+//const { get: getProduct } = require('../backend/db/product');
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -36,14 +36,8 @@ app.post('/updatepassword', jsonParser, updatePassword)
 app.post('/changepassword', jsonParser, changePassword)
 
 app.post('/support', jsonParser, support)
+app.get('/products', getProduct)
 
-app.get('/products', async function (req, res) {
-
-  const json = JSON.parse(
-    await readFile('./db.json', 'utf-8')
-  )
-  res.status(200).send(json.products);
-});
 
 app.post('/login', jsonParser, login)
 

@@ -14,6 +14,7 @@ function Support() {
   let [message, setMessage] = useState(null);
   let navigate = useNavigate();
 
+
   const [buttonText, setButtonText] = useState("Send"); 
 
   const changeText = (text) => setButtonText(text);
@@ -64,6 +65,7 @@ return (
             </Form>
           )}
         </Formik>
+
       </div>
     </div>
     </>
