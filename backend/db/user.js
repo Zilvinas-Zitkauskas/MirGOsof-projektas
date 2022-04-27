@@ -35,8 +35,7 @@ function findByEmail(email) {
       if (!err) {
         if (result.length == 0) {
           resolve(null)
-        }
-        else {
+        } else {
           const resultUser = result[0];
           const user = {
             fullName: resultUser.full_name,
