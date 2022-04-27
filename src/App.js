@@ -85,7 +85,6 @@ export default class App extends Component {
       this.routerRef.current.history.push("/login");
       return;
     }
-
     const products = this.state.products.map(p => {
       if (true) {
         axios.put(
@@ -293,7 +292,6 @@ export default class App extends Component {
               </div>
             </nav>
             <Routes>
-              <Route exact path="/" element={<ProductList />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Registration />} />
               <Route exact path="/cart" element={<Cart />} />
@@ -307,7 +305,6 @@ export default class App extends Component {
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
               <Route exact path="/support" element={<Support />} />
-
             </Routes>
           </div>
         </Router>
