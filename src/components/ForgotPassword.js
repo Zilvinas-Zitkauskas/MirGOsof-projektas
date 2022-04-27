@@ -8,6 +8,7 @@ function PasswordChange() {
   let [error, setError] = useState(null);
   let [message, setMessage] = useState(null);
 
+  let navigate = useNavigate();
   return (
     <>
       <Hero title="Remind password" />

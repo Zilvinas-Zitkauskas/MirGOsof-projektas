@@ -10,6 +10,7 @@ const { register } = require('./routes/register')
 const { login } = require('./routes/login')
 const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
+const { support } = require('./routes/support')
 
 const { addProduct } = require('./routes/addproduct')
 const { get: getproduct } = require('./db/product.js');
@@ -31,11 +32,10 @@ app.post('/forgotpassword', jsonParser, forgotPassword)
 app.get('/resetpassword', resetPassword)
 
 app.post('/updatepassword', jsonParser, updatePassword)
-
-
-app.get('/products', async (req, res) => {
  
 app.post('/changepassword', jsonParser, changePassword)
+
+app.post('/support', jsonParser, support)
 
 app.get('/products', async function (req, res) {
 

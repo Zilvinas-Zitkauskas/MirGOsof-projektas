@@ -10,55 +10,62 @@ import { Button} from 'react-bootstrap';
 
 function Support() {
 
-    const [buttonText, setButtonText] = useState("Submit"); 
+  let [error, setError] = useState(null);
+  let [message, setMessage] = useState(null);
+  let navigate = useNavigate();
 
-    const changeText = (text) => setButtonText(text);
+  const [buttonText, setButtonText] = useState("Send"); 
 
-  return (
-    <>
-      <Hero title="Support" />
-      <br />
-      <br />
-      <div className="columns is-mobile is-centered">
-        <div className="column is-one-third">
-          <Formik initialValues={{
-            Name: '',
-            price: '',
-            shortDesc: '',
-            description: '',
-            stock: 0
-          }} onSubmit={(values, { setSubmitting }) => {
-            fetch(`${environment.serverUrl}/add-product`,
-              {
+  const changeText = (text) => setButtonText(text);
+
+return (
+  <>
+    <Hero title="Support" />
+    <br />
+    <br />
+    <div className="columns is-mobile is-centered">
+      <div className="column is-one-third">
+        <Formik initialValues={{
+          email: '',
+          usertext: ''
+        }} onSubmit={(values, { resetForm, setSubmitting }) => {
+          fetch(`${environment.serverUrl}/support`,
+            {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values)
               })
-              .then((value) => value.json())
+              .then((value) => {
+                if (!value.ok) {
+                  return value.json()
+                }
+                setMessage("Email sent! We will get back to you as soon as possible.");
+                resetForm({values: ''});
+              })
               .then(result => {
-                alert(JSON.stringify(result, null, 2));
+                setError(result);
                 setSubmitting(false);
               })
-              (<Navigate to="/products" />);
-          }}
-          >
-            {({ isSubmitting }) => (
-              <Form >
-                <div className="field">
-                  <label className="label" htmlFor="Pavadinimas">Email :</label>
-                  <Field className="input" id="Email" type="text" name="Email"/>
-                </div>
-                <div className="field">
-                  <label className="label" htmlFor="Kaina">Ticket :</label>
-                  <Field className="input" id="Ticket" type="text" name="Ticket"/>
-                </div>
-                 
-                <button className="button is-primary is-outlined is-pulled-right" onClick={() => changeText("Ticket sent!")}>{buttonText}</button>
-              </Form>
-            )}
-          </Formik>
-        </div>
+        }}
+        >
+          {({ isSubmitting }) => (
+            <Form >
+              <div className="field">
+                <label className="label" htmlFor="email">Email :</label>
+                <Field className="input" id="email" type="text" name="email"/>
+              </div>
+              <div className="field">
+                <label className="label" htmlFor="usertext">Text :</label>
+                <Field className="textarea" component="textarea" id="usertext" placeholder="Text" name="usertext"/>
+              </div>
+              
+              <button className="button is-primary is-outlined is-pulled-right" onClick={() => changeText("Ticket sent!")}>{buttonText}</button>
+              {message && <div className="has-text-success">{message}</div>}
+            </Form>
+          )}
+        </Formik>
       </div>
+    </div>
     </>
   )
 }
