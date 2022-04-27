@@ -8,7 +8,6 @@ module.exports = {
       res.status(400).send({ error: 'Invalid username or password!' })
       return;
     }
-    const loggedInUser = user;
     res.status(200).send(user);
   }
 }

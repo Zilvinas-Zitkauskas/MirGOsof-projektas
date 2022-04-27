@@ -3,9 +3,10 @@ import environment from '../environment'
 import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
+import withContext from "../withContext";
 
 
-function ChangePassword() {
+function ChangePassword(props) {
   let [error, setError] = useState(null);
   let navigate = useNavigate();
   return (
@@ -16,7 +17,6 @@ function ChangePassword() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
-            loggedInUserEmail: '',
             oldPassword: '',
             newPassword: '',
             confirmPassword: '',
@@ -25,7 +25,7 @@ function ChangePassword() {
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values)
+                body: JSON.stringify({ ...values, loggedInUserEmail: props.context.user.email })
               })
               .then((value) => {
                 if (!value.ok) {
@@ -40,10 +40,6 @@ function ChangePassword() {
           }}>
             {({ isSubmitting }) => (
               <Form>
-                <div className="field">
-                  <label className="label" htmlFor="loggedInUserEmail">Email</label>
-                  <Field className="input" id="email" type="email" name="loggedInUserEmail" />
-                </div>
 
                 <div className="field">
                   <label className="label" htmlFor="oldPassword">Old password</label>
@@ -72,4 +68,4 @@ function ChangePassword() {
   )
 }
 
-export default ChangePassword;
+export default withContext(ChangePassword);
