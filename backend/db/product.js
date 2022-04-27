@@ -1,7 +1,6 @@
 const pool = require('./db').pool;
-const fs = require('fs')
 
-function add(data) {
+function addProduct(data) {
   return new Promise((resolve) => {
     const product = {
       name: data.name,
@@ -20,26 +19,21 @@ function add(data) {
   });
 }
 
-function get(){
+function getProduct() {
   return new Promise((resolve) => {
     pool.query(`SELECT * FROM product;`, (err, results, fields) => {
       if (!err) {
         if (results.length == 0) {
           resolve(null)
+          return;
         }
-        else {
-          //results=JSON.parse(JSON.stringify(results))
-          fs.writeFile('./database.json', JSON.stringify(results), (err) => {
-            if (err) console.log('Error writing file:', err);
-        })      
-          resolve(200);
-        }
+        resolve(results);
       }
     })
   });
 }
 
 module.exports = {
-  add,
-  get
+  addProduct,
+  getProduct
 }

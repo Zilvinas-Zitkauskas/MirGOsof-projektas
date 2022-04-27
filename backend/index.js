@@ -12,10 +12,9 @@ const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
 const { support } = require('./routes/support')
 
-const { addProduct } = require('./routes/addproduct')
+const { addProduct } = require('./routes/addProduct')
 const { changePassword } = require('./routes/changePassword')
-const { getProduct } = require('./routes/getproduct')
-//const { get: getProduct } = require('../backend/db/product');
+const { getProduct } = require('./routes/getProduct')
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -37,7 +36,6 @@ app.post('/changepassword', jsonParser, changePassword)
 
 app.post('/support', jsonParser, support)
 app.get('/products', getProduct)
-
 
 app.post('/login', jsonParser, login)
 
