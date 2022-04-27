@@ -3,6 +3,7 @@ import ProductItem from "./ProductItem";
 import withContext from "../withContext";
 import './Style.css';
 import BootCarousel from "./BootCarousel.js";
+import Hero from './Hero';
 
 
 const ProductList = props => {
@@ -11,9 +12,7 @@ const ProductList = props => {
   return (
     <>
       <div className="hero is-primary2">
-        <div className="hero-body container">
-          <h4 className="title">Our Products</h4>
-        </div>
+        <Hero title="Our Products"/>
       </div>
       <br/>
       <div className="carousele" >

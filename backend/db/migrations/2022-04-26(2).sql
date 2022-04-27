@@ -1,0 +1,20 @@
+INSERT INTO `category` (`Name`, `id`) VALUES ('Phones', '1');
+INSERT INTO `category` (`Name`, `id`) VALUES ('Computers', '2');
+INSERT INTO `category` (`Name`, `id`) VALUES ('TVs', '3');
+INSERT INTO `category` (`Name`, `id`) VALUES ('Car accesories', '4');
+INSERT INTO `category` (`Name`, `id`) VALUES ('Gaming equipment', '5');
+INSERT INTO `category` (`Name`, `id`) VALUES ('Leisure', '6');
+INSERT INTO `category` (`Name`, `id`) VALUES ('Other', '7');
+
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('APPLE Iphone 13 pro', '999', '3', 'The iPhone 13 Pro is Apple\'s smaller premium iPhone with a 6.1\" screen size and for the first time in an iPhone, it comes with a 120Hz ProMotion display for super smooth scrolling.', NULL, '1', '1');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('APPLE Iphone 12 pro', '799', '5', 'iPhone 12 Pro mobile was launched on 13th October 2020. The phone comes with a 6.10-inch touchscreen display offering a resolution of 1170x2532 pixels at a pixel density of 460 pixels per inch (ppi).', NULL, '2', '1');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Lenovo IdeaPad 3', '530', '1', '82KS000MGE 17,3“HD+ R5-3500U 8GB RAM 512GB SSD W11H.', NULL, '3', '2');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('ASUS VivoBook S15', '820', '1', 'LED S533EA-L12952W 15,6" FHD OLED i7-1165G7 16GB RAM 1TB SSD W11.', NULL, '4', '2');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Samsung GU60AU8079UXZG', '670', '6', '152 cm (60") 4K / UHD.', NULL, '5', '3');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('LG OLED55C17LB', '1270', '2', '140 cm (55") 4K / UHD.', NULL, '6', '3');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Phone mount', '19', '15', 'Easy to adjust, Value for money Giftable, Easy to install, Durability, Stays in place, Holds the phone tighly, Versatility.', NULL, '7', '4');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('LED Car lights', '19', '8', 'DRIVE IN A GALAXY OF COLOR LIGHTS | CUSTOMIZE YOUR CAR - Choose from 16 million colors and 30 unique scene modes. DIY effects, adjust brightness, and personalize this RGB LED strip to transform your daily drives into vibrant road trips.', NULL, '8', '4');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Redragon S101 Wired Gaming Keyboard and Mouse Combo', '35', '2', 'PC GAMING KEYBOARD AND GAMING MOUSE COMBO: Includes Redragon RGB Backlit Computer Gaming Keyboard and RGB Backlit Gaming Mouse', NULL, '9', '5');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('HyperX QuadCast microphone', '105', '6', 'Anti-vibration shock mount, four selectable polar patterns, convenient gain control adjustment', NULL, '10', '5');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Apple Watch Series 7', '420', '2', 'Aluminium 41mm Sportarmband rot', NULL, '11', '6');
+INSERT INTO `product` (`name`, `price`, `stock`, `description`, `picture`, `id`, `fk_Category`) VALUES ('Braun 100 Jahre', '36', '3', 'Limited Edition MGK 5 Multi Grooming Kit', NULL, '12', '6');
