@@ -8,21 +8,21 @@ export default function BootCarousel() {
                 <Carousel.Item interval={3000}>
                     <img
                         className="d-block w-100"
-                        src="https://i.pinimg.com/564x/e8/72/d7/e872d7c40656b872f963405c70e8d3aa.jpg"
+                        src="https://i.pinimg.com/564x/29/1f/49/291f499d0ca2ef4bd584db36701a5b6e.jpg"
                         alt="First slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item interval={3000}>
                     <img
                         className="d-block w-100"
-                        src="https://i.pinimg.com/564x/fb/52/8e/fb528e75fdffacbab43cade8e28048e2.jpg"
+                        src="https://i.pinimg.com/564x/f5/b4/10/f5b4109c8dbdaeb186bd981e640aa2b5.jpg"
                         alt="Second slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item interval={3000}>
                     <img
                         className="d-block w-100"
-                        src="https://i.pinimg.com/564x/11/2b/fd/112bfd856a50051af84db7a8dfd11a76.jpg"
+                        src="https://i.pinimg.com/564x/64/9c/10/649c10c9bf034314905ebf404fff2617.jpg"
                         alt="Third slide"
                     />
                 </Carousel.Item>

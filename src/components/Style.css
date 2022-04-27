@@ -1,17 +1,17 @@
 .hero.is-primary2 {
-    background-color: #c4632b;
+    background-color: #00d1b2;
     color: #fff;
 }
 
 .tag:not(body).is-primary2 {
-    background-color: #c4632b;
+    background-color: #00d1b2;
     color: #fff;
 }
 
 .button.is-primary.is-outlined2 {
     background-color: transparent;
-    border-color: #c4632b;
-    color: #c4632b;
+    border-color: #00d1b2;
+    color: #00d1b2;
 }
 
 .button.is-primary2 {
@@ -25,4 +25,5 @@
     height: 250px;
     margin: 0 auto;
     align-self: center;
+    margin-bottom: 50px;
 }

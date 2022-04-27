@@ -10,8 +10,11 @@ const { register } = require('./routes/register')
 const { login } = require('./routes/login')
 const { updatePassword } = require('./routes/updatePassword')
 const { resetPassword } = require('./routes/resetPassword')
+
 const { addProduct } = require('./routes/addproduct')
 const { get: getproduct } = require('./db/product.js');
+const { changePassword } = require('./routes/changePassword')
+
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -29,7 +32,13 @@ app.get('/resetpassword', resetPassword)
 
 app.post('/updatepassword', jsonParser, updatePassword)
 
+
 app.get('/products', async (req, res) => {
+ 
+app.post('/changepassword', jsonParser, changePassword)
+
+app.get('/products', async function (req, res) {
+
   const json = JSON.parse(
     await readFile('./db.json', 'utf-8')
   )

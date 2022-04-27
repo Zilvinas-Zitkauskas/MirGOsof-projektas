@@ -13,6 +13,8 @@ import ResetPassword from './components/ResetPassword';
 import About from './components/About';
 import MyAccount from './components/MyAccount';
 import image from './logo.png'
+import Support from "./components/Support";
+
 
 
 import Context from "./Context";
@@ -97,8 +99,6 @@ export default class App extends Component {
     this.setState({ products });
   };
 
-
-
   checkout = () => {
     if (!this.state.user) {
       this.routerRef.current.history.push("/login");
@@ -144,6 +144,13 @@ export default class App extends Component {
 
     this.setState({ user, products: products.data, cart });
   }
+
+  addProduct = (product, callback) => {
+    let products = this.state.products.slice();
+    products.push(product);
+    this.setState({ products }, () => callback && callback());
+  };
+
 
   addToCart = cartItem => {
     let cart = this.state.cart;
@@ -279,6 +286,10 @@ export default class App extends Component {
                 <Link to="/faq" className="navbar-item">
                     FAQ
                   </Link>
+                  <Link to="/support" className="navbar-item">
+                    Support
+                </Link>
+
               </div>
             </nav>
             <Routes>
@@ -295,6 +306,7 @@ export default class App extends Component {
               <Route exact path="/about" element={<About />} />
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
+              <Route exact path="/support" element={<Support />} />
 
             </Routes>
           </div>

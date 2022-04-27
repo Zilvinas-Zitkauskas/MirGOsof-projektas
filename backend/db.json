@@ -2,42 +2,42 @@
   "products": [
     {
       "id": "hdmdu0t80yjkfqselfc",
-      "name": "shoes",
-      "stock": 10,
-      "price": 399.99,
-      "shortDesc": "Nulla facilisi. Curabitur at lacus ac velit ornare lobortis.",
+      "name": "Apple Iphone 13 pro",
+      "stock": 3,
+      "price": 999.99,
+      "shortDesc": "The iPhone 13 Pro is Apple's smaller premium iPhone with a 6.1 inch screen size and for the first time in an iPhone, it comes with a 120Hz ProMotion display for super smooth scrolling.",
       "description": "Cras sagittis. Praesent nec nisl a purus blandit viverra. Ut leo. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce a quam."
     },
     {
       "id": "3dc7fiyzlfmkfqseqam",
-      "name": "bags",
-      "stock": 20,
-      "price": 299.99,
-      "shortDesc": "Nulla facilisi. Curabitur at lacus ac velit ornare lobortis.",
+      "name": "ASUS VivoBook S15",
+      "stock": 1,
+      "price": 1270.00,
+      "shortDesc": "LED S533EA-L12952W 15,6 FHD OLED i7-1165G7 16GB RAM 1TB SSD W11.",
       "description": "Cras sagittis. Praesent nec nisl a purus blandit viverra. Ut leo. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce a quam."
     },
     {
       "id": "aoe8wvdxvrkfqsew67",
-      "name": "shirts",
+      "name": "Phone mount",
       "stock": 15,
-      "price": 149.99,
-      "shortDesc": "Nulla facilisi. Curabitur at lacus ac velit ornare lobortis.",
+      "price": 19.99,
+      "shortDesc": "Easy to adjust, Value for money Giftable, Easy to install, Durability, Stays in place, Holds the phone tighly, Versatility.",
       "description": "Cras sagittis. Praesent nec nisl a purus blandit viverra. Ut leo. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce a quam."
     },
     {
       "id": "bmfrurdkswtkfqsf15j",
-      "name": "shorts",
-      "stock": 5,
-      "price": 109.99,
-      "shortDesc": "Nulla facilisi. Curabitur at lacus ac velit ornare lobortis.",
+      "name": "HyperX QuadCast microphone",
+      "stock": 6,
+      "price": 105.99,
+      "shortDesc": "Anti-vibration shock mount, four selectable polar patterns, convenient gain control adjustment",
       "description": "Cras sagittis. Praesent nec nisl a purus blandit viverra. Ut leo. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce a quam."
     },
     {
       "id": "bmfrurdkswtk5qsf15j",
-      "name": "smth",
-      "stock": 5,
-      "price": 10900.99,
-      "shortDesc": "Nulla facilisi. Curabitur at lacus ac velit ornare lobortis.",
+      "name": "Opel Astra",
+      "stock": 2,
+      "price": 550.00,
+      "shortDesc": "1998-10, 60kw, 2000cm^3, car mileage: 240 000km, dyzel, mechanic gearbox",
       "description": "Cras sagittis. Praesent nec nisl a purus blandit viverra. Ut leo. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Fusce a quam."
     }
   ]

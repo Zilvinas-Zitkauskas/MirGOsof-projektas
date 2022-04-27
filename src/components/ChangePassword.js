@@ -16,6 +16,8 @@ function ChangePassword() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
+            loggedInUserEmail: '',
+            oldPassword: '',
             newPassword: '',
             confirmPassword: '',
           }} onSubmit={(values, { setSubmitting }) => {
@@ -39,8 +41,13 @@ function ChangePassword() {
             {({ isSubmitting }) => (
               <Form>
                 <div className="field">
+                  <label className="label" htmlFor="loggedInUserEmail">Email</label>
+                  <Field className="input" id="email" type="email" name="loggedInUserEmail" />
+                </div>
+
+                <div className="field">
                   <label className="label" htmlFor="oldPassword">Old password</label>
-                  <Field className="input" id="password" type="password" name="newPassword" />
+                  <Field className="input" id="password" type="password" name="oldPassword" />
                 </div>
 
                 <div className="field">
