@@ -52,7 +52,7 @@ function findByEmail(email) {
   });
 }
 
-function update(user) {
+function updatePassword(user) {
   return new Promise((resolve) => {
     pool.query(`UPDATE client SET password = ? WHERE email = ?`, [user.password, user.email], (err, result, fields) => {
       resolve(user);
@@ -60,8 +60,18 @@ function update(user) {
   })
 }
 
+function updateUser(user) {
+  return new Promise((resolve) => {
+    pool.query(`UPDATE client SET full_name = ?, user_name = ?, address = ?, city =?  WHERE email = ?`,
+     [user.fullName, user.username, user.address, user.city, user.email], (err, result, fields) => {
+      resolve(user);
+    })
+  })
+}
+
 module.exports = {
   add,
-  update,
-  findByEmail
+  updatePassword,
+  findByEmail,
+  updateUser
 }

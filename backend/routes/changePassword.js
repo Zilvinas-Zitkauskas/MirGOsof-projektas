@@ -1,4 +1,4 @@
-const { findByEmail, update } = require('../db/user');
+const { findByEmail, updatePassword } = require('../db/user');
 
 module.exports = {
   changePassword: async function (req, res) {
@@ -25,7 +25,7 @@ module.exports = {
       return;
     }
 
-    const updated = await update({ ...user, password: newPassword });
+    const updated = await updatePassword({ ...user, password: newPassword });
     res.status(200).send(updated);
   }
 }

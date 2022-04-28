@@ -19,7 +19,7 @@ function ChangePassword(props) {
           <Formik initialValues={{
             oldPassword: '',
             newPassword: '',
-            confirmPassword: '',
+            confirmPassword: ''
           }} onSubmit={(values, { setSubmitting }) => {
             fetch(`${environment.serverUrl}/changePassword`,
               {
