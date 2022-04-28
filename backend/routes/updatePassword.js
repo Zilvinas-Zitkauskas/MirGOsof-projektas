@@ -1,10 +1,9 @@
-const { findByEmail, update } = require('../db/user')
+const { findByEmail, updatePassword } = require('../db/user')
 
 module.exports = {
   updatePassword: async function (req, res) {
     const { userEmail, newPassword, confirmPassword } = req.body;
     const user = await findByEmail(userEmail);
-    console.log({user})
     if (!user) {
       res.status(400).send({ error: 'Password reset link expired!' })
       return; 
@@ -17,7 +16,7 @@ module.exports = {
       res.status(400).send({ error: 'Password and confirm password must match!' })
       return;
     }
-    const updated = await update({...user, password: newPassword });
+    const updated = await updatePassword({...user, password: newPassword });
     res.status(200).send(updated);
   }
 }
