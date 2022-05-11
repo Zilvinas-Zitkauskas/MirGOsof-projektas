@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
@@ -15,6 +16,7 @@ import MyAccount from './components/MyAccount';
 import image from './logo.png'
 import Support from "./components/Support";
 import UpdateProduct from "./components/UpdateProduct"
+import Home from "./components/Home"
 
 
 import Context from "./Context";
@@ -237,7 +239,9 @@ veFromCart = cartItemId => {
               aria-label="main navigation"
             >
               <div className="navbar-brand">
+              <NavLink to="/products">
                 <img src ={image} width="50" height="20"></img>
+                </NavLink>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
                 <label
                   role="button"
@@ -257,6 +261,9 @@ veFromCart = cartItemId => {
               </div>
               <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
+                <Link to="/home" className="navbar-item">
+                  Home  
+                </Link>
                 <Link to="/products" className="navbar-item">
                   Products
                 </Link>
@@ -307,6 +314,7 @@ veFromCart = cartItemId => {
               </div>
             </nav>
             <Routes>
+            <Route exact path="/home" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Registration />} />
               <Route exact path="/cart" element={<Cart />} />
