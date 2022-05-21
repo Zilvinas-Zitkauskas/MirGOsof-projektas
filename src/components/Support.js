@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import axios from 'axios';
 import { Button} from 'react-bootstrap';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function Support() {
@@ -18,6 +20,10 @@ function Support() {
   const [buttonText, setButtonText] = useState("Send"); 
 
   const changeText = (text) => setButtonText(text);
+
+  const successToast = () => {
+    toast("You have successfully sent your message !");
+  };
 
 return (
   <>
@@ -40,13 +46,14 @@ return (
                 if (!value.ok) {
                   return value.json()
                 }
-                setMessage("Email sent! We will get back to you as soon as possible.");
                 resetForm({values: ''});
               })
               .then(result => {
                 setError(result);
                 setSubmitting(false);
-              })
+              }
+              )
+              toast("Email sent! We will get back to you as soon as possible.");
         }}
         >
           {({ isSubmitting }) => (
@@ -59,8 +66,10 @@ return (
                 <label className="label" htmlFor="usertext">Text :</label>
                 <Field className="textarea" component="textarea" id="usertext" placeholder="Text" name="usertext"/>
               </div>
-              
-              <button className="button is-primary is-outlined is-pulled-right" onClick={() => changeText("Ticket sent!")}>{buttonText}</button>
+              <>
+                <ToastContainer/>
+              </>
+              <button className="button is-primary is-outlined is-pulled-right">{buttonText}</button>
               {message && <div className="has-text-success">{message}</div>}
             </Form>
           )}

@@ -25,6 +25,9 @@ import jwt_decode from 'jwt-decode';
 import FAQ from "./components/FAQ";
 import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
+import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default class App extends Component {
 
   constructor(props) {
@@ -45,12 +48,13 @@ export default class App extends Component {
   login = async (email, password) => {
     const res = await axios.post(
       `${environment.serverUrl}/login`,
-      { email, password },
+      { email, password }, 
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
 
     if (res.status === 200) {
+      toast("You have successfully logged in !");
       const user = res.data;
       this.setState({ user });
       localStorage.setItem("user", JSON.stringify(user));
@@ -120,11 +124,13 @@ export default class App extends Component {
     this.setState({ products });
     this.clearCart();
   };
+  
   logout = e => {
       const confirmBox = window.confirm(
       "Do you really want to logout?"
         )
       if (confirmBox === true) {
+        toast("You have successfully logged out!");
         e.preventDefault();
         this.setState({ user: null });
         localStorage.removeItem("user");
@@ -215,6 +221,11 @@ veFromCart = cartItemId => {
   };
 
   render() {
+
+    const successToast = () => {
+      toast("You have successfully logged in !");
+    };
+
     return (
       <Context.Provider
         value={{
@@ -236,6 +247,9 @@ veFromCart = cartItemId => {
               role="navigation"
               aria-label="main navigation"
             >
+                <>
+                <ToastContainer/>
+                </>
               <div className="navbar-brand">
                 <img src ={image} width="50" height="20"></img>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>

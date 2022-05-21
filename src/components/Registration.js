@@ -3,6 +3,8 @@ import environment from '../environment'
 import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Settings() {
   let [error, setError] = useState(null);
@@ -13,6 +15,9 @@ function Settings() {
       <br />
       <br />
       <div className="columns is-mobile is-centered">
+          <>
+             <ToastContainer/>
+          </>
         <div className="column is-one-third">
           <Formik initialValues={{
             fullName: '',
@@ -32,6 +37,9 @@ function Settings() {
               .then((value) => {
                 if (!value.ok) {
                   return value.json()
+                }
+                else{
+                  toast("You have successfully registered ! Please log in !");
                 }
                 navigate('/login');
               })

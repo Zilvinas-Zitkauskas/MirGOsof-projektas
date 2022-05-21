@@ -3,6 +3,9 @@ import { Navigate } from "react-router-dom";
 import withContext from "../withContext";
 import Hero from './Hero'
 import { Link, NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 class Login extends React.Component {
 
@@ -18,7 +21,6 @@ class Login extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-
     const { username, password } = this.state;
     if (!username || !password) {
       return this.setState({ error: "Fill all fields!" });
@@ -32,6 +34,10 @@ class Login extends React.Component {
   };
 
   render() {
+
+
+
+
     return !this.props.context.user ? (
       <>
         <Hero title="Login" />
@@ -67,12 +73,11 @@ class Login extends React.Component {
                   Forgot password?
                 </NavLink>
                 <div className="field is-clearfix">
-                  <button
+                  <button 
                     className="button is-primary is-outlined is-pulled-right"
                   >
                     Submit
                   </button>
-
               </div>
             </div>
             </div>
