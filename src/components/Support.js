@@ -47,6 +47,7 @@ return (
                   return value.json()
                 }
                 resetForm({values: ''});
+                setMessage("Email sent! We will get back to you as soon as possible.");
               })
               .then(result => {
                 setError(result);
