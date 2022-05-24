@@ -239,7 +239,7 @@ veFromCart = cartItemId => {
               aria-label="main navigation"
             >
               <div className="navbar-brand">
-              <NavLink to="/products">
+              <NavLink to="/">
                 <img src ={image} width="50" height="20"></img>
                 </NavLink>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
@@ -261,7 +261,7 @@ veFromCart = cartItemId => {
               </div>
               <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
-                <Link to="/home" className="navbar-item">
+                <Link to="/" className="navbar-item">
                   Home  
                 </Link>
                 <Link to="/products" className="navbar-item">
@@ -292,7 +292,7 @@ veFromCart = cartItemId => {
                   </>
                 ) : (
                   <>
-                  <Link to="/" onClick={this.logout} className="navbar-item">
+                  <Link to="/home" onClick={this.logout} className="navbar-item">
                     Logout
                   </Link>
                                 
@@ -314,7 +314,7 @@ veFromCart = cartItemId => {
               </div>
             </nav>
             <Routes>
-            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Registration />} />
               <Route exact path="/cart" element={<Cart />} />
