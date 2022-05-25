@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Routes, Route, Link, NavLink, BrowserRouter as Router } from "react-router-dom";
 
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
@@ -54,7 +53,7 @@ export default class App extends Component {
   login = async (email, password) => {
     const res = await axios.post(
       `${environment.serverUrl}/login`,
-      { email, password }, 
+      { email, password },
     ).catch((res) => {
       return { status: 401, message: 'Unauthorized' }
     })
@@ -90,14 +89,10 @@ export default class App extends Component {
   }
 
   removeProduct = () => {
-    if (!this.state.user) {
-      this.routerRef.current.history.push("/login");
-      return;
-    }
     const products = this.state.products.map(p => {
       if (true) {
         axios.put(
-          `http://localhost:3001/products/${p.id}`,
+          `${environment.serverUrl}/products/${p.id}`,
           { ...p },
         )
       }
@@ -108,11 +103,6 @@ export default class App extends Component {
   };
 
   checkout = () => {
-    if (!this.state.user) {
-      this.routerRef.current.history.push("/login");
-      return;
-    }
-
     const cart = this.state.cart;
 
     const products = this.state.products.map(p => {
@@ -120,28 +110,31 @@ export default class App extends Component {
         p.stock = p.stock - cart[p.name].amount;
 
         axios.put(
-          `http://localhost:3001/products/${p.id}`,
+          `${environment.serverUrl}/products/${p.id}`,
           { ...p },
         )
       }
       return p;
     });
 
+    axios.post(`${environment.serverUrl}/cart/checkout`, { ...this.state.user });
+    toast("Checkout successful!");
     this.setState({ products });
     this.clearCart();
   };
-  
+
   logout = e => {
-      const confirmBox = window.confirm(
+    const confirmBox = window.confirm(
       "Do you really want to logout?"
-        )
-      if (confirmBox === true) {
-        toast("You have successfully logged out!");
-        e.preventDefault();
-        this.setState({ user: null });
-        localStorage.removeItem("user");
-      }
-    
+    )
+    if (confirmBox === true) {
+      toast("You have successfully logged out!");
+      e.preventDefault();
+      this.setState({ user: null });
+      localStorage.removeItem("user");
+      window.location.href = '/';
+    }
+
   };
 
   async componentDidMount() {
@@ -177,29 +170,21 @@ export default class App extends Component {
   };
 
   handleDelete = product => {
-    if (!this.state.user) {
-      this.routerRef.current.history.push("/login");
-      return;
-    }
-
     const products = this.state.products.map(p => {
       if (product[p.name]) {
         axios
-          .delete(`http://localhost:3001/products/${product.id}`)
-          .then(response => {
+          .delete(`${environment.serverUrl}/products/${product.id}`)
+          .then(() => {
             window.confirm(`Delete ${product.name}?`);
-
           });
-
       }
       return p;
     });
-
     this.setState({ products });
-
   };
 
 removeFromCart = cartItemId => {
+
     let cart = this.state.cart;
     delete cart[cartItemId];
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -270,12 +255,12 @@ removeFromCart = cartItemId => {
               role="navigation"
               aria-label="main navigation"
             >
-                <>
-                <ToastContainer/>
-                </>
+              <>
+                <ToastContainer />
+              </>
               <div className="navbar-brand">
-              <NavLink to="/products">
-                <img src ={image} width="50" height="20"></img>
+                <NavLink to="/products">
+                  <img src={image} width="50" height="20"></img>
                 </NavLink>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
                 <label
@@ -296,13 +281,13 @@ removeFromCart = cartItemId => {
               </div>
               <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
-                <Link to="/home" className="navbar-item">
-                  Home  
+                <Link to="/" className="navbar-item">
+                  Home
                 </Link>
                 <Link to="/products" className="navbar-item">
                   Products
                 </Link>
-                {this.state.user && this.state.user.email == "admin@admin.com" && (
+                {this.state.user && this.state.user.email == "mirgostore@gmail.com" && (
                   <Link to="/add-product" className="navbar-item">
                     Add Product
                   </Link>
@@ -327,23 +312,23 @@ removeFromCart = cartItemId => {
                   </>
                 ) : (
                   <>
-                  <Link to="/" onClick={this.logout} className="navbar-item">
-                    Logout
-                  </Link>
-                                
-                   <Link to="/myaccount" className="navbar-item">
-                     My account
+                    <Link to="/" onClick={this.logout} className="navbar-item">
+                      Logout
                     </Link>
-                    </>
+
+                    <Link to="/myaccount" className="navbar-item">
+                      My account
+                    </Link>
+                  </>
                 )}
                 <Link to="/about" className="navbar-item">
                   About
                 </Link>
                 <Link to="/faq" className="navbar-item">
-                    FAQ
-                  </Link>
-                  <Link to="/support" className="navbar-item">
-                    Support
+                  FAQ
+                </Link>
+                <Link to="/support" className="navbar-item">
+                  Support
                 </Link>
 
               </div>
