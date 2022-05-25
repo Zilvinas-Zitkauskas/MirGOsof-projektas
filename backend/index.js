@@ -16,7 +16,8 @@ const { addProduct } = require('./routes/addproduct')
 const { changePassword } = require('./routes/changePassword')
 const { changeInformation } = require('./routes/changeInformation')
 const { getProduct } = require('./routes/getproduct')
-const {updateProduct} = require('./routes/updateProduct')
+const { updateProduct } = require('./routes/updateProduct')
+const { checkoutCart } = require('./routes/checkoutCart')
 
 const app = express()
 const jsonParser = bodyParser.json();
@@ -41,5 +42,7 @@ app.post('/support', jsonParser, support)
 app.get('/products', getProduct)
 
 app.post('/login', jsonParser, login)
+
+app.post('/cart/checkout', jsonParser, checkoutCart)
 
 app.listen(3001)

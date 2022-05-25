@@ -1,11 +1,11 @@
 const pool = require('./db').pool;
 
 const registeredUsers = new Map();
-registeredUsers.set('admin@admin.com', {
+registeredUsers.set('mirgostore@gmail.com', {
   "fullName": "admin",
   "username": "admin",
-  "email": "admin@admin.com",
-  "emailConfirmation": "admin@admin.com",
+  "email": "mirgostore@gmail.com",
+  "emailConfirmation": "mirgostore@gmail.com",
   "password": "admin",
   "city": "Kaunas",
   "address": "admin"

@@ -16,7 +16,7 @@ function About() {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
         <div className="field">
-        <label className="label" htmlFor="text">MirGOsof teams project for: "Programavimo indžinerija".</label>
+        <label className="label" htmlFor="text">MirGOsof teams project for: "Programavimo inžinerija".</label>
 
         <label className="text" htmlFor="text">MirGOsof teams - tai 2022 metais KTU multimedijos studentų įkurta įmonė. 
         MirGOstore internetinė parduotuvė užsiima įvairiausių prekių pardavimu. Parduotuvėje galima įsigyti elektronikos, namų buities prekes, sodo technikos ir kitų

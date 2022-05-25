@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import withContext from "../withContext";
 import CartItem from "./CartItem";
 import Hero from "./Hero"
+import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
 
 const Cart = props => {
+  let navigate = useNavigate();
+
+  const onCheckout = () => {
+    if (!props.context.user) {
+      navigate("/login");
+      toast("You have to login!");
+      return;
+    }
+    props.context.checkout();
+  }
+
   const { cart } = props.context;
   const cartKeys = Object.keys(cart || {});
   return (
@@ -34,7 +47,7 @@ const Cart = props => {
                 </button>{" "}
                 <button
                   className="button is-success"
-                  onClick={props.context.checkout}
+                  onClick={onCheckout}
                 >
                   Checkout
                 </button>
