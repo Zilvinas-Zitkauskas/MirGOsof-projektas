@@ -17,6 +17,7 @@ import image from './logo.png'
 import Support from "./components/Support";
 import UpdateProduct from "./components/UpdateProduct"
 import Home from "./components/Home"
+import { useNavigate } from "react-router-dom";
 
 
 import Context from "./Context";
@@ -29,6 +30,7 @@ import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 
 import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Form, Formik } from "formik";
 
 export default class App extends Component {
 
@@ -37,7 +39,9 @@ export default class App extends Component {
     this.state = {
       user: null,
       cart: {},
-      products: []
+      products: [],
+      files: [],
+      editingproduct: null
     };
     this.routerRef = React.createRef();
   }
@@ -195,7 +199,7 @@ export default class App extends Component {
 
   };
 
-veFromCart = cartItemId => {
+removeFromCart = cartItemId => {
     let cart = this.state.cart;
     delete cart[cartItemId];
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -222,6 +226,20 @@ veFromCart = cartItemId => {
     this.setState({ cart });
   };
 
+  getFiles = file=>{
+    let files = this.state.files;
+    files.push(file);
+    document.getElementById("pic").src = file.base64;
+    this.setState({ files })
+  }
+  editProduct = product=>{
+    let editing = this.state.editingproduct;
+    editing = product;
+    this.setState({ editing })
+    let navigate = useNavigate();
+    navigate('/updateproduct');
+  }
+
   render() {
 
     const successToast = () => {
@@ -240,6 +258,9 @@ veFromCart = cartItemId => {
           clearCart: this.clearCart,
           checkout: this.checkout,
           state: this.state.user,
+          getFiles: this.getFiles,
+          editProduct: this.editProduct,
+          setState: this.setState,
         }}
       >
         <Router refs={this.routerRef}>
@@ -328,7 +349,7 @@ veFromCart = cartItemId => {
               </div>
             </nav>
             <Routes>
-            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Registration />} />
               <Route exact path="/cart" element={<Cart />} />

@@ -1,13 +1,32 @@
 import React from "react";
 import './Style.css';
-import UpdateProduct from "./UpdateProduct";
+import {UpdateProduct} from "./UpdateProduct";
+import environment from '../environment'
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route, Link, BrowserRouter as Router } from "react-router-dom";
 
-const ProductItem = props => {
+
+export const ProductItem = props => {
   let navigate = useNavigate();
-  function move(e) {
-    navigate('/updateproduct');
-  }
+  const Delete = (product) => {
+    console.log(product);
+    fetch(`${environment.serverUrl}/deleteproduct`,
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id: product.id})
+              })
+              .then((value) => {
+                if (!value.ok) {
+                  return value.json()
+                }
+                navigate('/products');
+              })
+              .then(result => {
+              })
+  };
+  <Route path="/UpdateProduct" component={UpdateProduct} />
   const { product } = props;
   return (
     <div className=" column is-half" id={product.id} name={product.name.toString().toLowerCase()}>
@@ -16,7 +35,7 @@ const ProductItem = props => {
           <div className="media-left">
             <figure className="image is-64x64">
               <img
-                src="https://picsum.photos/64"
+                src={product.picture}
                 alt={product.shortDesc}
               />
             </figure>
@@ -34,12 +53,35 @@ const ProductItem = props => {
             )}
             <div className="is-clearfix">
             {props.state && props.state.email == "admin@admin.com" && (
-                  <button className="button is-small is-outlined2 is-primary   is-pulled-right"
-                  onClick={move}>
+              <button className="button is-small is-outlined2 is-primary2   is-pulled-right"
+              onClick={() =>{
+                Delete(product)
+                window.location.reload(false)
+              }
+                
+              }
+              >
+               Delete
+               </button>
+                  
+                )}
+            {props.state && props.state.email == "admin@admin.com" && (
+              <Link
+              to={{
+                pathname: "/UpdateProduct",
+                state: {
+                  product: product,
+                },
+              }}
+            >
+              <button className="button is-small is-outlined2 is-primary   is-pulled-right"
+                  >
                    Edit
                    </button>
+            </Link>
+                  
                 )}
-
+            
               <button
                 className="button is-small is-outlined2 is-primary   is-pulled-right"
                 onClick={() =>
