@@ -15,7 +15,13 @@ const ProductList = props => {
       <div className="hero is-primary2">
         <Hero title="Our Products" />
       </div>
-      <br />
+      <br/>
+      
+      <div className="carousele" >
+      <BootCarousel />
+      </div>
+      <br/>
+
       <div className="search">
         <Formik initialValues={{
           search: ''
@@ -40,16 +46,19 @@ const ProductList = props => {
 
         }}>
           <Form>
-            <div className="field">
-              <Field className="input" type="text" name="search" id="search" placeholder="Search here" />
-            </div>
+          <div className="field search2">
+                  <Field className="input" type="text" name="search" id="search" placeholder="Search here"/>
+                  <button className="searchbutton" type="submit">Search</button>
+
+                </div>
+
           </Form>
         </Formik>
+        
       </div>
-      <br />
-      <div className="carousele" >
-        <BootCarousel />
-      </div>
+
+      <br/>
+
       <div className="container" >
         <div className="column columns is-multiline" id="container">
           {products && products.length ? (
@@ -59,6 +68,8 @@ const ProductList = props => {
                 key={index}
                 addToCart={props.context.addToCart}
                 state={props.context.state}
+                editProduct={props.context.editProduct}
+                setState={props.context.setState}
               />
             ))
           ) : (

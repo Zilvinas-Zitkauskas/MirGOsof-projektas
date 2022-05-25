@@ -3,11 +3,15 @@ import environment from '../environment'
 import Hero from './Hero'
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import ProductItem from './ProductItem';
 import withContext from "../withContext";
+import {ProductItem} from "./ProductItem";
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-function UpdateProduct(product) {
+export const UpdateProduct = ({props}) => {
   let [error, setError] = useState(null);
+  //let retrieve_var = props.product;
+
+
   let navigate = useNavigate();
   return (
     <>
@@ -17,7 +21,7 @@ function UpdateProduct(product) {
       <div className="columns is-mobile is-centered">
         <div className="column is-one-third">
           <Formik initialValues={{
-            name: "",
+            name:"",
             stock: "",
             price: "",
             description: "",

@@ -10,7 +10,6 @@ function Addproduct(data) {
       picture: data.picture,
       fk_Category: data.category
     }
-    //console.log(product);
     pool.query(`INSERT INTO product SET ?`, product, (err, result, fields) => {
       if (!err) {
         resolve(product);
@@ -27,6 +26,7 @@ function Getproduct() {
           resolve(null)
           return;
         }
+        console.log(results);
         resolve(results);
       }
     })
@@ -42,8 +42,19 @@ function Updateproduct(data) {
   })
 }
 
+function Deleteproduct(data) {
+  return new Promise((resolve) => {
+    pool.query(`DELETE FROM product WHERE id = ?`,
+     [data.id], (err, result, fields) => {
+      console.log(data);
+      resolve(result);
+    })
+  })
+}
+
 module.exports = {
   Addproduct,
   Getproduct,
-  Updateproduct
+  Updateproduct,
+  Deleteproduct
 }

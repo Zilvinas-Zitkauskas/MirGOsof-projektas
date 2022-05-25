@@ -15,7 +15,7 @@
 }
 
 .button.is-primary2 {
-    background-color: #c4632b;
+    background-color: #ca1b1b;
     border-color: transparent;
     color: #fff;
 }
@@ -28,9 +28,11 @@
     margin-bottom: 50px;
 }
 .search{
-    width: 600px;
+    width: 68%;
     align-self: center;
     margin: 0 auto;
+    box-shadow: rgba(109, 109, 109, 0.35) 0 10px 18px -14px ;
+
 }
 .decrease {
     background-color: rgba(0, 0, 0, 0);
@@ -45,7 +47,9 @@
     border:0px;
 }
 
-
+.delete{
+    background-color: #d3201a;
+}
 .button-33 {
   background-color: #00d1b2;
   border-radius: 100px;
@@ -75,3 +79,25 @@
   box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
   transform: scale(1.05);
 }
+.search2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.searchbutton{
+    background-color:rgba(44, 187, 99, 0.35);
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    width: 65px;
+    border-radius: 0px 5px 5px 0px;
+    border-width: 0;
+    font-weight: 500;
+    box-shadow: rgba(109, 109, 109, 0.35) 0 -25px 18px -14px inset,rgba(132, 133, 132, 0.25) 0 1px 2px,rgba(124, 124, 124, 0.25) 0 2px 4px,rgba(128, 128, 128, 0.25) 0 4px 8px,rgba(146, 146, 146, 0.25) 0 8px 16px,rgba(148, 148, 148, 0.25) 0 16px 32px;
+
+}
+.searchbutton:hover {
+    box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05);
+    font-weight: 600;
+  }

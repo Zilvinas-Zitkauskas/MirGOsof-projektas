@@ -16,12 +16,17 @@ const { addProduct } = require('./routes/addproduct')
 const { changePassword } = require('./routes/changePassword')
 const { changeInformation } = require('./routes/changeInformation')
 const { getProduct } = require('./routes/getproduct')
-const { updateProduct } = require('./routes/updateProduct')
+
 const { checkoutCart } = require('./routes/checkoutCart')
+
+const {updateProduct} = require('./routes/updateProduct')
+const {deleteProduct} = require('./routes/deleteProduct')
+
 
 const app = express()
 const jsonParser = bodyParser.json();
-
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use(cors({
   origin: environment.clientUrl
 }))
@@ -38,6 +43,7 @@ app.post('/updatepassword', jsonParser, updatePassword)
 app.post('/changepassword', jsonParser, changePassword)
 app.post('/changeinformation', jsonParser, changeInformation)
 app.post('/updateproduct', jsonParser, updateProduct)
+app.post('/deleteproduct', jsonParser, deleteProduct)
 app.post('/support', jsonParser, support)
 app.get('/products', getProduct)
 

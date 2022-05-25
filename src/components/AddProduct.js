@@ -3,8 +3,11 @@ import environment from '../environment'
 import Hero from './Hero'
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import withContext from "../withContext";
+import FileBase64 from "react-file-base64";
 
-function Addproduct() {
+
+const Addproduct = props => {
   let [error, setError] = useState(null);
   let navigate = useNavigate();
   return (
@@ -22,6 +25,7 @@ function Addproduct() {
             picture:'',
             category: ''
           }} onSubmit={(values, { setSubmitting }) => {
+            values.picture = document.getElementById("pic").src;
             fetch(`${environment.serverUrl}/add-product`,
               {
                 method: 'POST',
@@ -39,7 +43,7 @@ function Addproduct() {
                 setSubmitting(false);
               })
 
-          }}
+          }}enableReinitialize
           >
             {({ isSubmitting }) => (
               <Form>
@@ -60,8 +64,14 @@ function Addproduct() {
                   <Field className="input" id="description" type="text" name="description" />
                 </div>
                 <div className="field">
-                  <label className="label" htmlFor="picture">Picture: </label>
-                  <Field className="input" id="picture" type="text" name="picture" />
+                  <label className="label" id = "settingpic" htmlFor="picture">Picture: </label>
+                  <img src="https://picsum.photos/600/200" id="pic"></img>
+                <FileBase64 
+	                type="file"
+                  multiple={false} 
+                  onDone={props.context.getFiles.bind(this)}
+                />
+                
                 </div>
                 <div className="field">
                 <label className="label" htmlFor="category">Category:</label>
@@ -88,4 +98,4 @@ function Addproduct() {
   )
 }
 
-export default Addproduct;
+export default withContext(Addproduct);
