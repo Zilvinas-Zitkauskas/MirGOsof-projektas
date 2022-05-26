@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
 import withContext from "../withContext";
+import { toast, ToastContainer } from "react-toastify";
 
 
 function ChangeInformation(props){
@@ -35,6 +36,7 @@ function ChangeInformation(props){
                   return value.json()
                 }
                 navigate('/myaccount');
+                toast("You have successfully changed your information !");
               })
               .then(result => {
                 setError(result);

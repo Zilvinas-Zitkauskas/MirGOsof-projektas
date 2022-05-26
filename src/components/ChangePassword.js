@@ -35,9 +35,7 @@ function ChangePassword(props) {
                 if (!value.ok) {
                   return value.json()
                 }
-                else{
-                  toast("You have successfully changed your password !");
-                }
+                toast("You have successfully changed your password !");
                 navigate('/myaccount');
               })
               .then(result => {
