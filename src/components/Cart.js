@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import withContext from "../withContext";
 import CartItem from "./CartItem";
 import Hero from "./Hero"
-import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Cart = props => {
   let navigate = useNavigate();
