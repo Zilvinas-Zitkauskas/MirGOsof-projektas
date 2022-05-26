@@ -6,19 +6,11 @@ function MyAccount(props) {
   let navigate = useNavigate();
 
   const onChagePassword = () => {
-    if (!props.context.user) {
       navigate("/changepassword");
-      return;
-    }
-    props.context.checkout();
   }
 
   const onChageInfo = () => {
-    if (!props.context.user) {
       navigate("/changeinformation");
-      return;
-    }
-    props.context.checkout();
   }
 
   return (
