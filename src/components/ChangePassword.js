@@ -6,7 +6,6 @@ import { useState } from 'react';
 import withContext from "../withContext";
 import { toast } from "react-toastify";
 
-
 function ChangePassword(props) {
   let [error, setError] = useState(null);
   let navigate = useNavigate();
@@ -16,6 +15,9 @@ function ChangePassword(props) {
       <br />
       <br />
       <div className="columns is-mobile is-centered">
+           <>
+             <ToastContainer/>
+          </>
         <div className="column is-one-third">
           <Formik initialValues={{
             oldPassword: '',
@@ -31,6 +33,9 @@ function ChangePassword(props) {
               .then((value) => {
                 if (!value.ok) {
                   return value.json()
+                }
+                else{
+                  toast("You have successfully changed your password !");
                 }
                 navigate('/myaccount');
                 toast("Password changed successfully!");

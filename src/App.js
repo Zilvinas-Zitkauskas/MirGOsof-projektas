@@ -259,7 +259,7 @@ removeFromCart = cartItemId => {
                 <ToastContainer />
               </>
               <div className="navbar-brand">
-                <NavLink to="/products">
+                <NavLink to="/">
                   <img src={image} width="50" height="20"></img>
                 </NavLink>
                 <b className="navbar-item is-size-4 ">mirGOstore</b>
