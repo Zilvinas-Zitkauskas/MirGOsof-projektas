@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
 import withContext from "../withContext";
+import { toast } from "react-toastify";
 
 
-function ChangeInformation(props){
+function ChangeInformation(props) {
   let [error, setError] = useState(null);
   let navigate = useNavigate();
   return (
@@ -23,7 +24,7 @@ function ChangeInformation(props){
             newCity: props.context.user.city,
             newAddress: props.context.user.address
           }} onSubmit={(values, { setSubmitting }) => {
-            console.log({values});
+            console.log({ values });
             fetch(`${environment.serverUrl}/changeinformation`,
               {
                 method: 'POST',
@@ -35,6 +36,7 @@ function ChangeInformation(props){
                   return value.json()
                 }
                 navigate('/myaccount');
+                toast("Information changed successfully!");
               })
               .then(result => {
                 setError(result);
@@ -45,27 +47,27 @@ function ChangeInformation(props){
               <Form>
                 <div className="field">
                   <label className="label" htmlFor="newFullName">Full name</label>
-                  <Field className="input" id="newFullName" type="text" name="newFullName" text={props.context.user.fullName}/>
+                  <Field className="input" id="newFullName" type="text" name="newFullName" text={props.context.user.fullName} />
                 </div>
 
                 <div className="field">
                   <label className="label" htmlFor="newUsername">Username</label>
-                  <Field className="input" id="newUsername" type="text" name="newUsername" text={props.context.user.username}/>
+                  <Field className="input" id="newUsername" type="text" name="newUsername" text={props.context.user.username} />
                 </div>
 
                 <div className="field">
                   <label className="label" htmlFor="userEmail">Email</label>
-                  <Field className="input" id="userEmail" type="text" name="userEmail" text={props.context.user.email} disabled/>
+                  <Field className="input" id="userEmail" type="text" name="userEmail" text={props.context.user.email} disabled />
                 </div>
 
                 <div className="field">
                   <label className="label" htmlFor="newAddress">Address</label>
-                  <Field className="input" id="newAddress" type="text" name="newAddress" text={props.context.user.address}/>
+                  <Field className="input" id="newAddress" type="text" name="newAddress" text={props.context.user.address} />
                 </div>
 
                 <div className="field">
                   <label className="label" htmlFor="newCity">City</label>
-                  <Field className="input" id="newCity" type="text" name="newCity" text={props.context.user.city}/>
+                  <Field className="input" id="newCity" type="text" name="newCity" text={props.context.user.city} />
                 </div>
 
                 <button className="button is-primary is-outlined is-pulled-right" type="submit" disabled={isSubmitting}>Save</button>

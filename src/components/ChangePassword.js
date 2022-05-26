@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Hero from './Hero'
 import { useState } from 'react';
 import withContext from "../withContext";
+import { toast } from "react-toastify";
 
 
 function ChangePassword(props) {
@@ -32,6 +33,7 @@ function ChangePassword(props) {
                   return value.json()
                 }
                 navigate('/myaccount');
+                toast("Password changed successfully!");
               })
               .then(result => {
                 setError(result);
