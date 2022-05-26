@@ -312,9 +312,9 @@ removeFromCart = cartItemId => {
                   </>
                 ) : (
                   <>
-                    <Link to="/" onClick={this.logout} className="navbar-item">
+                    <a onClick={this.logout} className="navbar-item">
                       Logout
-                    </Link>
+                    </a>
 
                     <Link to="/myaccount" className="navbar-item">
                       My account
