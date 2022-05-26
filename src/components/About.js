@@ -56,7 +56,7 @@ function About() {
         </br>
         <br>
         </br>
-        <label className="text" htmlFor="text">Ši parduotuvė - tai Programavimo indžinerijos modulio projektas.</label>
+        <label className="text" htmlFor="text">Ši parduotuvė - tai Programavimo inžinerijos modulio projektas.</label>
         </div>
         </div>
       </div>
