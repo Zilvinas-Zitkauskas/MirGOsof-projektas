@@ -12,7 +12,7 @@ const CartItem = props => {
           <div className="media-left">
             <figure className="image is-64x64">
               <img
-                src="https://picsum.photos/64"
+                src={product.picture}
                 alt={product.description}
               />
             </figure>

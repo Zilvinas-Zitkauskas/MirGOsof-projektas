@@ -52,7 +52,7 @@ export const ProductItem = props => {
               <small className="has-text-danger">Out Of Stock</small>
             )}
             <div className="is-clearfix">
-            {props.state && props.state.email == "admin@admin.com" && (
+            {props.state && props.state.email == "mirgostore@gmail.com" && (
               <button className="button is-small is-outlined2 is-primary2   is-pulled-right"
               onClick={() =>{
                 Delete(product)
@@ -65,7 +65,7 @@ export const ProductItem = props => {
                </button>
                   
                 )}
-            {props.state && props.state.email == "admin@admin.com" && (
+            {props.state && props.state.email == "mirgostore@gmail.com" && (
               <Link
               to={{
                 pathname: "/UpdateProduct",

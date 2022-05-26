@@ -281,7 +281,7 @@ removeFromCart = cartItemId => {
               </div>
               <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
-                <Link to="/home" className="navbar-item">
+                <Link to="/" className="navbar-item">
                   Home
                 </Link>
                 <Link to="/products" className="navbar-item">
@@ -312,7 +312,7 @@ removeFromCart = cartItemId => {
                   </>
                 ) : (
                   <>
-                    <Link to="/home" onClick={this.logout} className="navbar-item">
+                    <Link to="/" onClick={this.logout} className="navbar-item">
                       Logout
                     </Link>
 
@@ -348,7 +348,7 @@ removeFromCart = cartItemId => {
               <Route exact path="/myaccount" element={<MyAccount />} />
               <Route exact path="/faq" element={<FAQ />} />
               <Route exact path="/support" element={<Support />} />
-              <Route exact path="/updateproduct/:id" element={<UpdateProduct />} />
+              <Route exact path="/updateproduct" element={<UpdateProduct />} />
             </Routes>
           </div>
         </Router>
