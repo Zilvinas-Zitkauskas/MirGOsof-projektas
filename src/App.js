@@ -30,6 +30,7 @@ import { toHaveStyle } from "@testing-library/jest-dom/dist/matchers";
 import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Formik } from "formik";
+import { Button } from "bootstrap";
 
 export default class App extends Component {
 
@@ -281,7 +282,7 @@ removeFromCart = cartItemId => {
               </div>
               <div className={`navbar-menu ${this.state.showMenu ? "is-active" : ""
                 }`}>
-                <Link to="/home" className="navbar-item">
+                <Link to="/" className="navbar-item">
                   Home
                 </Link>
                 <Link to="/products" className="navbar-item">
@@ -312,9 +313,9 @@ removeFromCart = cartItemId => {
                   </>
                 ) : (
                   <>
-                    <Link to="/home" onClick={this.logout} className="navbar-item">
+                    <a onClick={this.logout} className="navbar-item">
                       Logout
-                    </Link>
+                    </a>
 
                     <Link to="/myaccount" className="navbar-item">
                       My account
